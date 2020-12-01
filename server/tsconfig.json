@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+      "outDir": "./build/",          //컴파일될 경로
+      "module": "commonjs",          /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', 'es2020', or 'ESNext'. */
+      "target": "es5",               /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019', 'ES2020', or 'ESNEXT'. */
+      "moduleResolution": "node",
+      /*
+        websocket을 express middleware에서 request에 담아주기 위해서는
+        request type에 websocket을 담을 type이 지정되어 있어야 한다.
+        그래서 typeRoots에 customType경로를 추가해서 express의 Request type을 변경했다.
+      */
+      "typeRoots": ["./node_modules/@types", "./src/customTypes"], 
+    },
+    "exclude": ["node_modules"]
+  }
+  

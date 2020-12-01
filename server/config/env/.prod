@@ -1,0 +1,7 @@
+PORT=6002
+DB_HOST=localhost
+DB_USER=userId
+DB_NM=userNm
+DB_PWD=pwd
+DB_PORT=5475
+API_PREFIX=/api
