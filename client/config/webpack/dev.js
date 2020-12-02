@@ -63,7 +63,7 @@ module.exports = {
         }), //환경변수 셋팅
     ],
     devServer: {
-        port: 6001,
+        port: 8080,
         host: '0.0.0.0',
         contentBase: buildPath,       //정적파일을 제공할 경로 (default 웹팩 아웃풋)
         publicPath: "/",              //브라우져를 통해 접근하는 경로 (default /)

@@ -1,11 +1,12 @@
 import { createReducer } from 'typesafe-actions';
 import produce from 'immer';
 import { TWebSocket, TWebSocketAction } from './types';
-import { CONNECT, DISCONNECT, SET_SOCKET_ID } from './actions';
+import { CONNECT, DISCONNECT, SET_SOCKET_ID, SERVER_DATA } from './actions';
 
 const initialState: TWebSocket = {
 	isConnected: false,
 	socketId: '',
+	data: '',
 };
 
 const websocket = createReducer<TWebSocket, TWebSocketAction>(initialState, {
@@ -21,6 +22,10 @@ const websocket = createReducer<TWebSocket, TWebSocketAction>(initialState, {
 	[SET_SOCKET_ID]: (state, { payload: socketId }) =>
 		produce(state, (draft) => {
 			draft.socketId = socketId;
+		}),
+	[SERVER_DATA]: (state, {payload: data}) =>
+		produce(state, (draft) => {
+			draft.data = data;
 		}),
 });
 

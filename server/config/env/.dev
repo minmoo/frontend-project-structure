@@ -1,4 +1,4 @@
-PORT=6000
+PORT=8081
 DB_HOST=localhost
 DB_USER=userId
 DB_NM=userNm

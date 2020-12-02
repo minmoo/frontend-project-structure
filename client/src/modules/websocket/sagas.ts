@@ -9,7 +9,7 @@ import * as ws from './actions';
 
 function connect() {
     //Real life project extract this into an API module
-    const socket = ioClient.connect('http://0.0.0.0:6001', {transports: ['websocket']});
+    const socket = ioClient.connect('http://localhost:8081', {transports: ['websocket']});
 
     //We need to wrap the socket connection into a promise (socket returns callback)
     return new Promise((resolve, reject) => {
@@ -36,9 +36,16 @@ function subscribe(socket: SocketIOClient.Socket){
             emit(ws.disconnect());
         });
 
+        //TODO: Error handle
         socket.on('error', (e) => {
             console.log('Error while trying to connect');
         });
+
+        //Add websocket recieve server data
+        socket.on('data', (data) => {
+            emit(ws.server_data(data));
+        });
+
 
         return () => {}; //called on channel closed / cleanup(free resource)
     })
@@ -57,7 +64,7 @@ function* read(socket: SocketIOClient.Socket){
 
 function* write(socket: SocketIOClient.Socket) {
     while(true){
-        const {msg} = yield take(ws.SEND_MESSAGE);
+        const {msg} = yield take(ws.SEND_DATA);
         console.log('send msg');
         socket.emit('receive', msg);
     }
