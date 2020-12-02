@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Avatar, Box, Button, Grid, Paper, TextField, Typography} from '@material-ui/core';
+import {Avatar, Box, Button, Grid, Hidden, Paper, TextField, Typography} from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import {useForm, Controller} from 'react-hook-form';
 import * as yup from 'yup';
@@ -13,15 +13,25 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         paper: {
             margin: theme.spacing(10, 5),
+            display: 'flex',
         },
         input: {
             margin: theme.spacing(8 ,4),
+            width: '20vw',
+            minWidth: '400px',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
         },
         welcome: {
+            [theme.breakpoints.down('sm')]:{
+                display:'none'
+            },
+            width: '50vw',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
             backgroundColor: theme.palette.secondary.main,
         },
         title: {
@@ -66,60 +76,56 @@ export default function SignIn(){
     return(
         <Grid container justify="center" alignItems="center" className={classes.main}>
             <Paper elevation={6} className={classes.paper}>
-                <Grid container justify="center" alignItems="center" spacing={0}>
-                    <Grid item className={classes.input}>
-                        <Avatar className={classes.avatar}>
-                            <LockOutlinedIcon />
-                        </Avatar>
-                        <Typography component="h1" variant="h5">
-                            Sign in
-                        </Typography>
-                
-                        <form onSubmit={handleSubmit(submitHandle)} className={classes.form}>
-                        
-                            <TextField
-                                error={errors.userId ? true: false}
-                                variant="outlined"
-                                margin="normal"
-                                fullWidth
-                                id="userId"
-                                label="User Id"
-                                name="userId"
-                                ref={register}
-                                helperText={errors.userId?.message}
-                                autoFocus
-                            />
-                            <TextField
-                                error={errors.userPwd? true: false}
-                                variant="outlined"
-                                margin="normal"
-                                fullWidth
-                                id="userPwd"
-                                label="User Password"
-                                name="userPwd"
-                                ref={register}
-                                helperText={errors.userPwd?.message}
-                            />
-                            <Button
-                                type="submit"
-                                fullWidth
-                                variant="contained"
-                                color="primary"
-                                className={classes.submit}
-                            >
-                                Sign In
-                            </Button>
-                        </form>
-                        
-                    </Grid>
-                    <Grid item xs={false} sm={4} md={7}>
-                        <Box className={classes.welcome}>
-                            <Typography variant="h1" component="h1" className={classes.title}>
-                                Welcome to the Back Office
-                            </Typography>            
-                        </Box>
-                    </Grid>
-                </Grid>
+                <div className={classes.input}>
+                    <Avatar className={classes.avatar}>
+                        <LockOutlinedIcon />
+                    </Avatar>
+                    <Typography component="h1" variant="h5">
+                        Sign in
+                    </Typography>
+            
+                    <form onSubmit={handleSubmit(submitHandle)} className={classes.form}>
+                    
+                        <TextField
+                            error={errors.userId ? true: false}
+                            variant="outlined"
+                            margin="normal"
+                            fullWidth
+                            id="userId"
+                            label="User Id"
+                            name="userId"
+                            ref={register}
+                            helperText={errors.userId?.message}
+                            autoFocus
+                        />
+                        <TextField
+                            error={errors.userPwd? true: false}
+                            variant="outlined"
+                            margin="normal"
+                            fullWidth
+                            id="userPwd"
+                            label="User Password"
+                            name="userPwd"
+                            ref={register}
+                            helperText={errors.userPwd?.message}
+                        />
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="secondary"
+                            className={classes.submit}
+                        >
+                            Sign In
+                        </Button>
+                    </form>
+                </div>
+                <div className={classes.welcome}>
+                    <Typography variant="h2" className={classes.title}>
+                        Welcome<br/> to the<br/> Back Office
+                    </Typography>            
+                </div>
+            
             </Paper>
         </Grid>
     )
