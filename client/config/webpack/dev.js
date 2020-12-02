@@ -39,7 +39,7 @@ module.exports = {
     output: {
         filename: 'bundle.js',                          // build시 만들어질 번들 파일 이름
         // publicPath: 'http://0.0.0.0:6000/',
-        // publicPath: 'http://202.8.174.146:7008/',       // 중첩된 React router 빈페이지 해결
+        publicPath: 'http://202.8.174.146:7008/',       // 중첩된 React router 빈페이지 해결
         path: buildPath                                 // 번들 파일 경로
     },
     devtool: 'source-map',
@@ -63,7 +63,7 @@ module.exports = {
         }), //환경변수 셋팅
     ],
     devServer: {
-        port: 6001,
+        port: 7008,
         host: '0.0.0.0',
         contentBase: buildPath,       //정적파일을 제공할 경로 (default 웹팩 아웃풋)
         publicPath: "/",              //브라우져를 통해 접근하는 경로 (default /)
