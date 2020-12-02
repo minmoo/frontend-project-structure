@@ -10,10 +10,10 @@ export const indigoTheme = createMuiTheme({
             main: indigo["A400"],
             dark: indigo["A700"]
         },
-        background: {
-            paper: '#FFFFFF',
-            default: '#f6f7f9'
-        },
+        // background: {
+        //     paper: '#FFFFFF',
+        //     default: '#f6f7f9'
+        // },
         error: red
     },
     status: {
