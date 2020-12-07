@@ -5,6 +5,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { RootState } from '../../modules';
 import useLayoutStyles from '../layoutStyle';
 import {useNavbarToggle} from '../../modules/layout';
+import { SnackbarSetContext } from '../../configs/CustomSnackbarProvider';
 
 export default function LoToolbar() {
     const classes = useLayoutStyles();
@@ -15,6 +16,12 @@ export default function LoToolbar() {
 
     const handleNavbarToggle = () => {
         onNavbarToggle()
+    }
+
+    const setSnackbar = React.useContext(SnackbarSetContext);
+
+    const handleClick = () => {
+        setSnackbar("안녕하세요", "info");
     }
 
     return (
@@ -32,7 +39,7 @@ export default function LoToolbar() {
                 <Typography variant="h6" className={classes.title}>
                     {layout.toolbar.title}
                 </Typography>
-                <Button color="inherit">Button</Button>
+                <Button color="inherit" onClick={handleClick}>Button</Button>
             </Toolbar>
         </AppBar>
     );

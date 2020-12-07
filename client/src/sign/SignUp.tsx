@@ -1,10 +1,12 @@
 import * as React from 'react';
-import {Link, Button, TextField, Typography, Box} from '@material-ui/core';
+import {Link, Button, TextField, Typography, Box, Snackbar} from '@material-ui/core';
 import {useForm} from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 import Sign from './Sign';
+import {useSignUp} from '../modules/sign/hooks';
 
 
 const useStyles = makeStyles((theme: Theme) => 
@@ -36,16 +38,32 @@ const schema = yup.object().shape({
     passwordConfirm: yup.string().oneOf([yup.ref('password'), null], "password가 일치하지 않습니다.")
 });
 
+function Alert(props: AlertProps){
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 export default function SignIn(){
     const classes = useStyles();
+
+    const onSignUp = useSignUp();
 
     const {handleSubmit, register, errors} = useForm({
         resolver: yupResolver(schema),
         defaultValues: defaultValues,
     });
 
-    const submitHandle = (data) => {
+    const [open, setOpen] = React.useState(false);
 
+    const submitHandle = (data) => {
+        console.log(data);
+        onSignUp(data);
+    };
+
+    const handleClose = (event?:React.SyntheticEvent, reason?:string) => {
+        if(reason == 'clickaway'){
+            return;
+        }
+        setOpen(false);
     };
 
 
@@ -116,6 +134,12 @@ export default function SignIn(){
                     {"Sign in"}
                 </Link>
             </Box>
+
+            <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+                <Alert onClose={handleClose} severity="success">
+                    성공했습니다.
+                </Alert>
+            </Snackbar>
         </Sign>
     )
 
