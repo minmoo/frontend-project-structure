@@ -5,6 +5,9 @@ import useLayoutStyle from './layoutStyle';
 import { Container } from '@material-ui/core';
 import {Route} from "react-router-dom";
 import Websocket from '../main/websocket';
+import Router from '../configs/router/Router';
+import {routes} from '../configs/router/config';
+
 export default function Layout() {
     const classes = useLayoutStyle();
 
@@ -15,10 +18,12 @@ export default function Layout() {
             <main className={classes.content}>
                 <div className={classes.toolBar}/>
                 <Container maxWidth="lg" className={classes.container}>
-                    <Route exact path="/" render={() => <div>Home page</div>}/>
+                    {/* <Route exact path="/" render={() => <div>Home page</div>}/>
                     <Route exact path="/home" render={() => <div>Home page</div>}/>
                     <Route path="/home/dashboard" render={() => <div>Dashboard page</div>}/>
-                    <Route path="/home/websocket" component={Websocket}/>
+                    <Route path="/home/websocket" component={Websocket}/> */}
+
+                    <Router routes={routes}/>
                 </Container>
             </main>
         </div>

@@ -21,8 +21,14 @@ export default function LoToolbar() {
     const setSnackbar = React.useContext(SnackbarSetContext);
 
     const handleClick = () => {
-        setSnackbar("안녕하세요", "info");
+        setSnackbar(true, '안녕하세요', "info");
     }
+
+    const handleClickB = () => {
+        setSnackbar(true, '하이', 'error');
+    }
+
+    console.log('Content re-render');
 
     return (
         <AppBar position="fixed" className={classes.appBar}>
@@ -40,6 +46,7 @@ export default function LoToolbar() {
                     {layout.toolbar.title}
                 </Typography>
                 <Button color="inherit" onClick={handleClick}>Button</Button>
+                <Button color="inherit" onClick={handleClickB}>ButtonB</Button>
             </Toolbar>
         </AppBar>
     );
