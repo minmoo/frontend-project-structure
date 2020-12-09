@@ -6,9 +6,9 @@ import { Container } from '@material-ui/core';
 import {Route} from "react-router-dom";
 import Websocket from '../main/websocket';
 import Router from '../configs/router/Router';
-import {routes} from '../configs/router/config';
 
-export default function Layout() {
+
+export default function Layout({routes}) {
     const classes = useLayoutStyle();
 
     return (
