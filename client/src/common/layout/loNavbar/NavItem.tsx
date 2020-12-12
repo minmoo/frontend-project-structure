@@ -5,7 +5,7 @@ import { NavLink, NavLinkProps } from 'react-router-dom';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-import {TNavItem} from '../../modules/layout/types';
+import {TNavItem} from '../../../modules/layout/types';
 
 const useStyles = makeStyles((theme:Theme) => 
     createStyles({

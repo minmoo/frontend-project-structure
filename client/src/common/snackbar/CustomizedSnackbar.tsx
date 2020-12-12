@@ -1,7 +1,7 @@
 import * as React from 'react';
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 import { Snackbar } from '@material-ui/core';
-import {SnackbarSetContext, SnackbarValueContext} from './CustomSnackbarProvider';
+import {SnackbarSetContext, SnackbarValueContext} from './SnackbarProvider';
 
 function Alert(props: AlertProps){
     return <MuiAlert elevation={6} variant="filled" {...props} />;

@@ -2,7 +2,7 @@ import * as React from 'react';
 import {makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import {List, Divider} from '@material-ui/core';
 import NavItem from './NavItem';
-import {TNavItem} from '../../modules/layout';
+import {TNavItem} from '../../../modules/layout';
 
 const useStyles = makeStyles((theme:Theme) => 
     createStyles({

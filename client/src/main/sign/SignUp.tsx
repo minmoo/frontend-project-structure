@@ -6,7 +6,7 @@ import { yupResolver } from '@hookform/resolvers';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 import Sign from './Sign';
-import {useSignUp} from '../modules/sign/hooks';
+import {useSignUp} from '../../modules/sign/hooks';
 
 
 const useStyles = makeStyles((theme: Theme) => 

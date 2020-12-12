@@ -3,9 +3,7 @@ import LoToolbar from './loToolbar';
 import LoNavBar from './loNavbar';
 import useLayoutStyle from './layoutStyle';
 import { Container } from '@material-ui/core';
-import {Route} from "react-router-dom";
-import Websocket from '../main/websocket';
-import Router from '../configs/router/Router';
+import Router from '../router';
 
 
 export default function Layout({routes}) {
@@ -22,7 +20,6 @@ export default function Layout({routes}) {
                     <Route exact path="/home" render={() => <div>Home page</div>}/>
                     <Route path="/home/dashboard" render={() => <div>Dashboard page</div>}/>
                     <Route path="/home/websocket" component={Websocket}/> */}
-
                     <Router routes={routes}/>
                 </Container>
             </main>

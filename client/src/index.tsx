@@ -1,10 +1,10 @@
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
 import { Provider } from 'react-redux';
-import ConfigureStore from './configs/ConfigureStore';
-import CustomThemeProvider from './configs/CustomThemeProvider';
-import CustomSnackbarProvider from './configs/CustomSnackbarProvider';
-import CustomizedSnackbar from './configs/CustomizedSnackbar';
+import ConfigureStore from './common/ConfigureStore';
+import CustomThemeProvider from './common/theme/ThemeProvider';
+import CustomSnackbarProvider from './common/snackbar/SnackbarProvider';
+import CustomizedSnackbar from './common/snackbar/CustomizedSnackbar';
 import App from './App';
 
 const store = ConfigureStore();

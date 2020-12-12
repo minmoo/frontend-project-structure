@@ -2,10 +2,10 @@ import * as React from 'react';
 import {useTheme } from '@material-ui/core/styles';
 import {Drawer, Hidden} from '@material-ui/core';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../modules';
+import { RootState } from '../../../modules';
 import useLayoutStyle from '../layoutStyle';
 import NavItems from './NavItems';
-import {useNavbarToggle} from '../../modules/layout';
+import {useNavbarToggle} from '../../../modules/layout';
 
 export default function Navbar(){
     const theme = useTheme();

@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { MuiThemeProvider } from "@material-ui/core";
-import { themeCreator} from './themes/base';
+import themeMap from "../../configs/themes/base";
 
 export const ThemeContext = React.createContext((themeName:string):void => {});
 
-const CustomThemeProvider: React.FC = (props) => {
+const ThemeProvider: React.FC = (props) => {
     //read current theme from localstorage or maybe from an api
     const curThemeName = localStorage.getItem("appTheme") || "indigoTheme";
 
@@ -12,7 +12,7 @@ const CustomThemeProvider: React.FC = (props) => {
     const [themeName, _setThemeName] = React.useState(curThemeName);
 
     //Get the theme object by theme name
-    const theme = themeCreator(themeName);
+    const theme = themeMap[themeName];
 
     const setThemeName = (themeName: string): void => {
         localStorage.setItem("appTheme", themeName);
@@ -27,4 +27,4 @@ const CustomThemeProvider: React.FC = (props) => {
     )
 };
 
-export default CustomThemeProvider;
+export default ThemeProvider;

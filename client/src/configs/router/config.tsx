@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-
 export type TRoute = {
     path: string,
     exact: boolean,
@@ -20,14 +19,14 @@ export const routes: TRoute[] = [
     },
     {
         path: '/home',
-        component: React.lazy(() => import('../../layout/index')),
+        component: React.lazy(() => import('../../common/layout')),
         exact: false,
         private: false,
         fallback: <div> Loading...</div>,
         routes: [
             {
                 path: '/home/websocket',
-                component: React.lazy(() => import('../../main/websocket')),
+                component: React.lazy(() => import('../../main/pages/websocket')),
                 exact: false,
                 private: false,
                 fallback: <div> Loading...</div>
@@ -36,13 +35,13 @@ export const routes: TRoute[] = [
     },
     {
         path: '/signIn',
-        component: React.lazy(() => import('../../sign/SignIn')),
+        component: React.lazy(() => import('../../main/sign/SignIn')),
         exact: false,
         fallback:<div>Loading....</div>
     },
     {
         path: '/signUp',
-        component: React.lazy(() => import('../../sign/SignUp')),
+        component: React.lazy(() => import('../../main/sign/SignUp')),
         exact: false,
         fallback:<div>Loading....</div>
     }

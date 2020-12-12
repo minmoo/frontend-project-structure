@@ -38,20 +38,20 @@ const SnackbarSetProvider = React.memo<TSnackbarSetProps>(({setSnackbar, childre
     )
 });
 
-export default function CustomSnackbarProvider({children}){
+export default function SnackbarProvider({children}){
     const [snackbar, setSnackbar] = React.useState({
         open: false,
         message: '',
         type: '' as Color
     });
 
-    console.log('CustomSnackbarProvider refresh');
+    console.log('SnackbarProvider refresh');
 
     // use multiple contexts ( value and setting)
     // setting 함수를 변경하지 않고 snackbat object 값만 변경할 경우
     // value값이 변하지 않으면 context를 제공은 re-renders 하지 않는다. 
     
-    //이 방법은 <CustomSnackbarProvider/> 가 updates되면
+    //이 방법은 <SnackbarProvider/> 가 updates되면
     //<SnackbarSetProvider/> 를 refresh할려고 하지만 props(setSnackbar함수)가 변하지 않으면 re-render을 하지 않는다.
     //Optimize
 

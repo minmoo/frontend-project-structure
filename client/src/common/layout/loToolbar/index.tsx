@@ -2,10 +2,10 @@ import * as React from 'react';
 import { useSelector } from 'react-redux';
 import { AppBar, Button, IconButton, Toolbar, Typography } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-import { RootState } from '../../modules';
+import { RootState } from '../../../modules';
 import useLayoutStyles from '../layoutStyle';
-import {useNavbarToggle} from '../../modules/layout';
-import { SnackbarSetContext } from '../../configs/CustomSnackbarProvider';
+import {useNavbarToggle} from '../../../modules/layout';
+import { SnackbarSetContext } from '../../snackbar/SnackbarProvider';
 
 export default function LoToolbar() {
     const classes = useLayoutStyles();

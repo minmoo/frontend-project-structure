@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 import {Button, Card, CardContent, CardActions, Typography} from '@material-ui/core';
-import { useWsConnect } from '../../modules/websocket';
-import { RootState } from '../../modules';
+import { useWsConnect } from '../../../modules/websocket';
+import { RootState } from '../../../modules';
 
 
 export default function Websocket(){

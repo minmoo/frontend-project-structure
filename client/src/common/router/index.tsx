@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Switch} from 'react-router-dom';
 import RouteWithSubRoutes from './RouteWithSubRoutes';
-import {TRoute} from './config';
+import {TRoute} from '../../configs/router/config';
 
 type TProps ={
     routes: TRoute[];

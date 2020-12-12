@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {Switch, BrowserRouter, Route} from 'react-router-dom';
-import Layout from './layout';
-import SignIn from './sign/SignIn';
-import SignUp from './sign/SignUp';
-import Router from './configs/router/Router';
+import Layout from './common/layout';
+import SignIn from './main/sign/SignIn';
+import SignUp from './main/sign/SignUp';
+import Router from './common/router';
 import {routes} from './configs/router/config';
 
 export default function App(){
