@@ -5,7 +5,6 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { RootState } from '../../../modules';
 import useLayoutStyles from '../layoutStyle';
 import {useNavbarToggle} from '../../../modules/layout';
-import { SnackbarSetContext } from '../../snackbar/SnackbarProvider';
 
 export default function LoToolbar() {
     const classes = useLayoutStyles();
@@ -17,18 +16,6 @@ export default function LoToolbar() {
     const handleNavbarToggle = () => {
         onNavbarToggle()
     }
-
-    const setSnackbar = React.useContext(SnackbarSetContext);
-
-    const handleClick = () => {
-        setSnackbar(true, '안녕하세요', "info");
-    }
-
-    const handleClickB = () => {
-        setSnackbar(true, '하이', 'error');
-    }
-
-    console.log('Content re-render');
 
     return (
         <AppBar position="fixed" className={classes.appBar}>
@@ -45,8 +32,8 @@ export default function LoToolbar() {
                 <Typography variant="h6" className={classes.title}>
                     {layout.toolbar.title}
                 </Typography>
-                <Button color="inherit" onClick={handleClick}>Button</Button>
-                <Button color="inherit" onClick={handleClickB}>ButtonB</Button>
+                <Button color="inherit">Button</Button>
+                <Button color="inherit">ButtonB</Button>
             </Toolbar>
         </AppBar>
     );

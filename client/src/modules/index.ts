@@ -3,6 +3,7 @@ import { all, fork } from 'redux-saga/effects';
 import layout from './layout';
 import websocket from './websocket';
 import sign from './sign';
+import snackbar from './snackbar';
 
 import {flow} from './websocket/sagas';
 import {watchSignUp, signFlow} from './sign/sagas';
@@ -10,7 +11,8 @@ import {watchSignUp, signFlow} from './sign/sagas';
 const rootReducer = combineReducers({
     layout,
     websocket,
-    sign
+    sign,
+    snackbar
 });
 
 export default rootReducer;

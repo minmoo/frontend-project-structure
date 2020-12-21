@@ -11,6 +11,7 @@ export type TSignUp = TSignIn & {
 }
 
 export type TSign ={
+	signSuccess: string,
 	id: string,
 	name: string
 };

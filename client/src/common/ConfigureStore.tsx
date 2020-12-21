@@ -1,10 +1,16 @@
 import { createStore, applyMiddleware } from 'redux';
 import rootReducer, {rootSaga} from '../modules';
 import createSagaMiddelware from 'redux-saga';
+import {createBrowserHistory} from 'history';
 
 import { composeWithDevTools } from 'redux-devtools-extension'; // 리덕스 개발자 도구
 
-const sagaMiddleware = createSagaMiddelware();
+export const customHistory = createBrowserHistory();
+const sagaMiddleware = createSagaMiddelware({
+	context: {
+		history: customHistory
+	}
+}); //SAGA 미들웨어 생성
 
 const configureStore = () => {
 	const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(sagaMiddleware)));

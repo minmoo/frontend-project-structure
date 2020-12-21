@@ -7,7 +7,7 @@ type TProps ={
     routes: TRoute[];
 }
 
-const Router: React.FC<TProps> = ({routes}) => {
+const CustomRouter: React.FC<TProps> = ({routes}) => {
     return (
         <Switch>
             {routes && 
@@ -18,4 +18,4 @@ const Router: React.FC<TProps> = ({routes}) => {
     )
 };
 
-export default Router;
+export default CustomRouter;

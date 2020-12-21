@@ -1,0 +1,2 @@
+SIGN_UP_URL=/api/sign/signUp
+SIGN_IN_URL=/api/sign/signIN

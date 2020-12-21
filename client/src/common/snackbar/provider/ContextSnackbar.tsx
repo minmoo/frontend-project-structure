@@ -7,7 +7,7 @@ function Alert(props: AlertProps){
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 };
 
-export default function CustomizedSnackbar(){
+export default function ContextSnackbar(){
 
     const setSnackbar = React.useContext(SnackbarSetContext);
     const snackbar = React.useContext(SnackbarValueContext);

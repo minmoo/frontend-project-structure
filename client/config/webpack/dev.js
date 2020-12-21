@@ -38,7 +38,7 @@ module.exports = {
     },
     output: {
         filename: 'bundle.js',                          // build시 만들어질 번들 파일 이름
-        // publicPath: 'http://0.0.0.0:6000/',
+        //publicPath: 'http://0.0.0.0:8080/',
         // publicPath: 'http://202.8.174.146:7008/',       // 중첩된 React router 빈페이지 해결
         path: buildPath                                 // 번들 파일 경로
     },
@@ -72,9 +72,9 @@ module.exports = {
         proxy: {
             //서버의 URL이 틀리거나 PORT가 다르면 PROXY가 적용되지 않는다!
             //모든 요청에 대해 검사하기 때문에 /apiOne 도 /api proxy적용 ?
-            // '/api': {
-            //     target:'http://0.0.0.0:7009'
-            // },
+            '/api': {
+                target:'http://localhost:8081'
+            },
             '/chatbot/api':{
                 target: 'http://202.8.174.146:7006'
             }

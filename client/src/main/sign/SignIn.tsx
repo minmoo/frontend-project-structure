@@ -4,6 +4,9 @@ import {useForm} from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import {useSignIn} from '../../modules/sign/hooks';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../modules';
 import Sign from './Sign';
 
 
@@ -32,8 +35,11 @@ const schema = yup.object().shape({
     userPwd: yup.string().required("password를 입력해주세요.")
 });
 
-export default function SignIn(){
+export default function SignIn({history}){
     const classes = useStyles();
+
+    const onSignIn = useSignIn();
+    const sign = useSelector((state:RootState) => state.sign);
 
     const {handleSubmit, register, errors} = useForm({
         resolver: yupResolver(schema),
@@ -41,7 +47,7 @@ export default function SignIn(){
     });
 
     const submitHandle = (data) => {
-
+        onSignIn({id: data.userId, pwd: data.userPwd});
     };
 
 
