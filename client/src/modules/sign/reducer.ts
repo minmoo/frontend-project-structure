@@ -16,19 +16,21 @@ const websocket = createReducer<TSign, TSignAction>(initialState, {
 		}),
 	[SIGN_IN_SUCCESS]: (state, action) =>
 		produce(state, (draft) => {
-			draft.signSuccess = "Y"
+			draft.signSuccess = "Y";
+			draft.id = action.payload;
 		}),
 	[SIGN_IN_FAIL]: (state, action) =>
 		produce(state, (draft) => {
-			draft.signSuccess = "N"
+			draft.signSuccess = "N";
 		}),
 	[SIGN_OUT]: (state, action) =>
 		produce(state, (draft) => {
-			draft;
+			draft
 		}),
 	[SIGN_OUT_SUCCESS]: (state, action) =>
 		produce(state, (draft) => {
-			draft.signSuccess="Y"
+			draft.signSuccess="Y";
+			draft.id = '';
 		}),
 	[SIGN_UP]: (state, action) =>
 		produce(state, (draft) => {
@@ -36,11 +38,11 @@ const websocket = createReducer<TSign, TSignAction>(initialState, {
 		}),
 	[SIGN_UP_SUCCESS]: (state, action) =>
 		produce(state, (draft) => {
-			draft.signSuccess = "Y"
+			draft.signSuccess = "Y";
 		}),
 	[SIGN_UP_FAIL]: (state, action) =>
 		produce(state, (draft) => {
-			draft.signSuccess = "N"
+			draft.signSuccess = "N";
 		}),
 });
 

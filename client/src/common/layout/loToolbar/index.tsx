@@ -5,16 +5,27 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { RootState } from '../../../modules';
 import useLayoutStyles from '../layoutStyle';
 import {useNavbarToggle} from '../../../modules/layout';
+import {useSignOut} from '../../../modules/sign/hooks';
 
-export default function LoToolbar() {
+export default function LoToolbar({history}) {
     const classes = useLayoutStyles();
     const onNavbarToggle = useNavbarToggle();
-
+    
+    const onSignOut = useSignOut();
 
     const layout = useSelector((state:RootState) => state.layout);
+    const sign = useSelector((state:RootState) => state.sign);
 
     const handleNavbarToggle = () => {
         onNavbarToggle()
+    };
+
+    const handleSignOut = () => {
+        onSignOut();
+    };
+
+    const handleSignIn = () => {
+        history.push("/signIn");
     }
 
     return (
@@ -32,8 +43,10 @@ export default function LoToolbar() {
                 <Typography variant="h6" className={classes.title}>
                     {layout.toolbar.title}
                 </Typography>
-                <Button color="inherit">Button</Button>
-                <Button color="inherit">ButtonB</Button>
+                {sign.id ?
+                    <Button color="inherit" onClick={handleSignOut}>Sign Out</Button>
+                    : <Button color="inherit" onClick={handleSignIn}>Sign In</Button>
+                }
             </Toolbar>
         </AppBar>
     );

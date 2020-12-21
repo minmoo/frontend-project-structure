@@ -6,12 +6,12 @@ import { Container } from '@material-ui/core';
 import Router from '../router';
 
 
-export default function Layout({routes}) {
+export default function Layout({routes, history}) {
     const classes = useLayoutStyle();
 
     return (
         <div className={classes.root}>
-            <LoToolbar/>
+            <LoToolbar history={history}/>
             <LoNavBar/>
             <main className={classes.content}>
                 <div className={classes.toolBar}/>

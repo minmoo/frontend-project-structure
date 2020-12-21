@@ -29,7 +29,7 @@ export function* signFlow(){
             }));
         }else{
             history.push("/home")
-            yield put(sign.sign_in_success());
+            yield put(sign.sign_in_success(signInAction.payload.id));
             yield put(snackbar.snackbar_call({
                 open: true,
                 duration: 3000,
@@ -40,6 +40,12 @@ export function* signFlow(){
             yield take(sign.SIGN_OUT);
             // yield call(signOutApi, id);
             yield put(sign.sign_out_success());
+            yield put(snackbar.snackbar_call({
+                open: true,
+                duration: 3000,
+                type: "success",
+                message: "로그아웃 성공."
+            }));
         }
     }
 }
