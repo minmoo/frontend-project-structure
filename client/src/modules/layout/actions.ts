@@ -1,4 +1,4 @@
-import {createAction} from 'typesafe-actions';
+import { createAction } from 'typesafe-actions';
 
 export const NAVBAR_TOGGLE = 'layout/NAVBAR_TOGGLE';
 

@@ -1,4 +1,4 @@
-import {createAction} from 'typesafe-actions';
+import { createAction } from 'typesafe-actions';
 
 export const CONNECT = 'websocket/CONNECT';
 export const DISCONNECT = 'websocket/DISCONNECT';

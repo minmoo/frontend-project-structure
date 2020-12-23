@@ -11,15 +11,15 @@ import App from './App';
 const store = ConfigureStore();
 
 ReactDom.render(
-    <CustomThemeProvider>
-        <Provider store={store}>
-            {/* <CustomSnackbarProvider>
+  <CustomThemeProvider>
+    <Provider store={store}>
+      {/* <CustomSnackbarProvider>
+        <ContextSnackbar/>
                 <App />
-                <ContextSnackbar/>
             </CustomSnackbarProvider> */}
-            <App/>
-            <CustomSnackbar/>
-        </Provider>
-    </CustomThemeProvider>,
-	document.getElementById('app')
+      <App />
+      <CustomSnackbar />
+    </Provider>
+  </CustomThemeProvider>,
+  document.getElementById('app'),
 );

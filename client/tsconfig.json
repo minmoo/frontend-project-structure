@@ -8,6 +8,7 @@
         "allowJs": true,                // .js 파일도 함께 컴파일 할지 여부
         "sourceMap": true,              // sourceMap 파일 생성여부
         "downlevelIteration":true,
+        "esModuleInterop": true	        // 'require'와 'import' 호환
     },
     "exclude": ["node_modules"]
 }

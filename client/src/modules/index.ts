@@ -5,23 +5,20 @@ import websocket from './websocket';
 import sign from './sign';
 import snackbar from './snackbar';
 
-import {flow} from './websocket/sagas';
-import {watchSignUp, signFlow} from './sign/sagas';
+import { flow } from './websocket/sagas';
+import { watchSignUp, signFlow } from './sign/sagas';
 
 const rootReducer = combineReducers({
-    layout,
-    websocket,
-    sign,
-    snackbar
+  layout,
+  websocket,
+  sign,
+  snackbar,
 });
 
 export default rootReducer;
 
 export type RootState = ReturnType<typeof rootReducer>;
 
-export function* rootSaga() {
-    yield all([fork(flow), fork(watchSignUp), fork(signFlow)]);
-};
-
-
-
+export function* rootSaga(): Generator {
+  yield all([fork(flow), fork(watchSignUp), fork(signFlow)]);
+}
