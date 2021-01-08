@@ -22,6 +22,7 @@ export type TToolbar = {
 };
 
 export type TLayout = {
+  breakWidth: number;
   navbar: TNavbar;
   toolbar: TToolbar;
 };

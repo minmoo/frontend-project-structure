@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Router } from 'react-router-dom';
-import CustomRouter from './common/router';
+import CustomRouter from './configs/router';
 import { routes } from './configs/router/config';
-import { customHistory } from './common/ConfigureStore';
+import { customHistory } from './configs/store/ConfigureStore';
 
 export default function App(): React.ReactElement {
   return (

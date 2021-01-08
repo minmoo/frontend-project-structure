@@ -11,9 +11,7 @@ export type TSignUp = TSignIn & {
 };
 
 export type TSign = {
-  signSuccess: string;
-  id: string;
-  name: string;
+  error: string;
 };
 
 export type TSignAction = ActionType<typeof actions>;

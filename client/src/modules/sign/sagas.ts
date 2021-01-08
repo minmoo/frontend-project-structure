@@ -1,7 +1,8 @@
-import { takeEvery, put, take, all, getContext } from 'redux-saga/effects';
+import { takeEvery, put, take, all, getContext, takeLatest } from 'redux-saga/effects';
 import { ActionType } from 'typesafe-actions';
 import * as sign from './actions';
 import * as snackbar from '../snackbar/actions';
+import * as user from '../user/actions';
 
 function signInApi(id, password) {
   return true;
@@ -12,47 +13,100 @@ function signOutApi(id) {
 }
 
 // SignIn - SignOut SAGA
-export function* signFlow() {
-  const history = yield getContext('history' as string);
-  while (true) {
-    const signInAction = yield take(sign.SIGN_IN);
-    // const userInfo = yield call(signInApi, id, password);
-    const userId = localStorage.getItem('userId') || '';
-    if (userId == '' || signInAction.payload.id != userId) {
-      yield put(sign.sign_in_fail());
-      yield put(
-        snackbar.snackbar_call({
-          open: true,
-          duration: 3000,
-          type: 'error',
-          message: '로그인 실패.',
-        }),
-      );
-    } else {
-      history.push('/home');
-      yield put(sign.sign_in_success(signInAction.payload.id));
-      yield put(
-        snackbar.snackbar_call({
-          open: true,
-          duration: 3000,
-          type: 'success',
-          message: '로그인 성공.',
-        }),
-      );
+// export function* signFlow() {
+//   const history = yield getContext('history' as string);
+//   while (true) {
+//     const signInAction = yield take(sign.SIGN_IN);
+//     // const userInfo = yield call(signInApi, id, password);
+//     const userId = localStorage.getItem('userId') || '';
+//     if (userId == '' || signInAction.payload.id != userId) {
+//       yield put(sign.sign_in_fail());
+//       yield put(
+//         snackbar.snackbar_call({
+//           open: true,
+//           duration: 3000,
+//           type: 'error',
+//           message: '로그인 실패.',
+//         }),
+//       );
+//     } else {
+//       history.push('/home');
+//       yield put(sign.sign_in_success(signInAction.payload.id));
+//       yield put(
+//         snackbar.snackbar_call({
+//           open: true,
+//           duration: 3000,
+//           type: 'success',
+//           message: '로그인 성공.',
+//         }),
+//       );
+//       yield put(user.check(signInAction.payload.id));
 
-      yield take(sign.SIGN_OUT);
-      // yield call(signOutApi, id);
-      yield put(sign.sign_out_success());
-      yield put(
-        snackbar.snackbar_call({
-          open: true,
-          duration: 3000,
-          type: 'success',
-          message: '로그아웃 성공.',
-        }),
-      );
-    }
+//       yield take(sign.SIGN_OUT);
+//       // yield call(signOutApi, id);
+//       yield put(sign.sign_out_success());
+//       yield put(
+//         snackbar.snackbar_call({
+//           open: true,
+//           duration: 3000,
+//           type: 'success',
+//           message: '로그아웃 성공.',
+//         }),
+//       );
+//     }
+//   }
+// }
+
+function* signInSaga(action: ActionType<typeof sign.sign_in>) {
+  const history = yield getContext('history' as string);
+  // const userInfo = yield call(signInApi, id, password);
+  const userId = localStorage.getItem('userId') || '';
+
+  if (userId == '' || action.payload.id != userId) {
+    yield put(sign.sign_in_fail());
+    yield put(
+      snackbar.snackbar_call({
+        open: true,
+        duration: 3000,
+        type: 'error',
+        message: '로그인 실패.',
+      }),
+    );
+  } else {
+    history.push('/home');
+    yield put(sign.sign_in_success(action.payload.id));
+    yield put(
+      snackbar.snackbar_call({
+        open: true,
+        duration: 3000,
+        type: 'success',
+        message: '로그인 성공.',
+      }),
+    );
+    yield put(user.check(action.payload.id));
   }
+}
+
+export function* watchSignIn() {
+  yield takeLatest(sign.SIGN_IN, signInSaga);
+}
+
+function* signOutSaga() {
+  localStorage.setItem('userId', '');
+  yield put(sign.sign_out_success());
+  yield put(
+    snackbar.snackbar_call({
+      open: true,
+      duration: 3000,
+      type: 'success',
+      message: '로그아웃 성공.',
+    }),
+  );
+  yield put(user.check(''));
+}
+
+export function* watchSignOut() {
+  yield takeLatest(sign.SIGN_OUT, signOutSaga);
 }
 
 // 회원가입 SAGA

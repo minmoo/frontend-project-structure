@@ -1,58 +1,34 @@
 import { createReducer } from 'typesafe-actions';
 import produce from 'immer';
 import { TSign, TSignAction } from './types';
-import {
-  SIGN_IN,
-  SIGN_OUT,
-  SIGN_UP,
-  SIGN_UP_SUCCESS,
-  SIGN_UP_FAIL,
-  SIGN_IN_SUCCESS,
-  SIGN_IN_FAIL,
-  SIGN_OUT_SUCCESS,
-} from './actions';
+import { SIGN_UP_SUCCESS, SIGN_UP_FAIL, SIGN_IN_SUCCESS, SIGN_IN_FAIL, SIGN_OUT_SUCCESS } from './actions';
 
 const initialState: TSign = {
-  signSuccess: '',
-  id: '',
-  name: '',
+  error: '',
 };
 
-const websocket = createReducer<TSign, TSignAction>(initialState, {
-  [SIGN_IN]: (state) =>
+const sign = createReducer<TSign, TSignAction>(initialState, {
+  [SIGN_IN_SUCCESS]: (state, { payload: id }) =>
     produce(state, (draft) => {
-      draft;
-    }),
-  [SIGN_IN_SUCCESS]: (state, action) =>
-    produce(state, (draft) => {
-      draft.signSuccess = 'Y';
-      draft.id = action.payload;
+      draft.error = '';
     }),
   [SIGN_IN_FAIL]: (state) =>
     produce(state, (draft) => {
-      draft.signSuccess = 'N';
+      draft.error = 'Y';
     }),
-  [SIGN_OUT]: (state) =>
-    produce(state, (draft) => {
-      draft;
-    }),
+  //SIGN_OUT은 SUCCESS가 중요하지 않다.
   [SIGN_OUT_SUCCESS]: (state) =>
     produce(state, (draft) => {
-      draft.signSuccess = 'Y';
-      draft.id = '';
-    }),
-  [SIGN_UP]: (state) =>
-    produce(state, (draft) => {
-      draft;
+      draft.error = '';
     }),
   [SIGN_UP_SUCCESS]: (state) =>
     produce(state, (draft) => {
-      draft.signSuccess = 'Y';
+      draft.error = '';
     }),
   [SIGN_UP_FAIL]: (state) =>
     produce(state, (draft) => {
-      draft.signSuccess = 'N';
+      draft.error = 'Y';
     }),
 });
 
-export default websocket;
+export default sign;

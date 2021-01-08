@@ -19,7 +19,7 @@
     },
     "ecmaVersion": 12,
     "sourceType": "module",
-    "project": "tsconfig.json"
+    "project": "client/tsconfig.json"
   },
   "ignorePatterns": ["config/", "build/", "node_modules/", "**/sagas.ts"],
   "plugins": ["@typescript-eslint", "react-hooks"],

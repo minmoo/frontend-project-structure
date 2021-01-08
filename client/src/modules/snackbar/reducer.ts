@@ -11,7 +11,7 @@ const initialState: TSnackbar = {
   duration: 3000,
 };
 
-const websocket = createReducer<TSnackbar, TSnackbarAction>(initialState, {
+const snackbar = createReducer<TSnackbar, TSnackbarAction>(initialState, {
   [SNACKBAR_CALL]: (state, action) =>
     produce(state, (draft) => {
       draft.open = action.payload.open;
@@ -21,4 +21,4 @@ const websocket = createReducer<TSnackbar, TSnackbarAction>(initialState, {
     }),
 });
 
-export default websocket;
+export default snackbar;

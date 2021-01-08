@@ -7,6 +7,7 @@ import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import { NAVBAR_TOGGLE } from './actions';
 
 const initailState: TLayout = {
+  breakWidth: 200,
   toolbar: {
     title: 'Title',
   },
