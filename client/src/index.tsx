@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
 import { Provider } from 'react-redux';
+import { HelmetProvider } from 'react-helmet-async';
 import ConfigureStore from './configs/store/ConfigureStore';
 import CustomThemeProvider from './configs/themes/ThemeProvider';
 // import CustomSnackbarProvider from './common/snackbar/SnackbarProvider';
@@ -27,12 +28,14 @@ loadUser();
 ReactDom.render(
   <CustomThemeProvider>
     <Provider store={store}>
-      {/* <CustomSnackbarProvider>
-        <ContextSnackbar/>
-                <App />
-            </CustomSnackbarProvider> */}
-      <App />
-      <CustomSnackbar />
+      <HelmetProvider>
+        {/* <CustomSnackbarProvider>
+          <ContextSnackbar/>
+                  <App />
+              </CustomSnackbarProvider> */}
+        <App />
+        <CustomSnackbar />
+      </HelmetProvider>
     </Provider>
   </CustomThemeProvider>,
   document.getElementById('app'),

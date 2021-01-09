@@ -3,6 +3,7 @@ import { Router } from 'react-router-dom';
 import CustomRouter from './configs/router';
 import { routes } from './configs/router/config';
 import { customHistory } from './configs/store/ConfigureStore';
+import { Helmet } from 'react-helmet-async';
 
 export default function App(): React.ReactElement {
   return (
@@ -14,6 +15,9 @@ export default function App(): React.ReactElement {
 				<Route path="/signIn" component={SignIn}/>
 				<Route path="/signUp" component={SignUp}/>
 			</Switch> */}
+      <Helmet>
+        <title>TEST Title</title>
+      </Helmet>
       <CustomRouter routes={routes} />
     </Router>
   );
