@@ -1,14 +1,16 @@
 {
-    "compilerOptions": {
-        "outDir": "./build/",           // 컴파일될 경로
-        "noImplicitAny": false,         // any 타입의 표현식 및 선언에서 오류를 발생시킬지
-        "module": "CommonJS",
-        "target": "es5",
-        "jsx":"react",
-        "allowJs": true,                // .js 파일도 함께 컴파일 할지 여부
-        "sourceMap": true,              // sourceMap 파일 생성여부
-        "downlevelIteration":true,
-        "esModuleInterop": true	        // 'require'와 'import' 호환
-    },
-    "exclude": ["node_modules"]
+  "compilerOptions": {
+    "outDir": "./build/",
+    "noImplicitAny": false,
+    "module": "CommonJS",
+    "target": "es5",
+    "jsx": "react",
+    "allowJs": true,
+    "sourceMap": true,
+    "downlevelIteration": true,
+    "esModuleInterop": true,
+    "types": ["@types/jest"]
+  },
+  "exclude": ["node_modules"],
+  "include": ["src"]
 }

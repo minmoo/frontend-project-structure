@@ -4,7 +4,7 @@ import SignUpForm from '../../components/sign/container/SignUpForm';
 
 export default function SignUpPage(): React.ReactElement {
   return (
-    <SignTemplate title={'Sign In'}>
+    <SignTemplate title={'Sign Up'}>
       <SignUpForm />
     </SignTemplate>
   );
