@@ -43,6 +43,8 @@ describe('<Dashboard/>', () => {
 
     fireEvent.click(screen.getByText('Add'));
 
+    expect(onAdd).toHaveBeenCalledTimes(1);
+
     expect(onAdd).toBeCalledWith('3');
   });
 });

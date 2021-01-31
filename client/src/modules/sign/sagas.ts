@@ -1,11 +1,23 @@
-import { takeEvery, put, take, all, getContext, takeLatest } from 'redux-saga/effects';
+import { takeEvery, put, take, all, getContext, takeLatest, call } from 'redux-saga/effects';
 import { ActionType } from 'typesafe-actions';
 import * as sign from './actions';
 import * as snackbar from '../snackbar/actions';
 import * as user from '../user/actions';
 
-function signInApi(id, password) {
+export function signInApi(id, password) {
+  const userId = localStorage.getItem('userId') || '';
+  if(userId == '' || id != userId){
+    return false;
+  }
   return true;
+}
+
+export function signUpApi(id){
+  const userId = localStorage.getItem('userId') || '';
+  if(userId == '' || id != userId){
+    return true;
+  }
+  return false;
 }
 
 function signOutApi(id) {
@@ -57,22 +69,11 @@ function signOutApi(id) {
 //   }
 // }
 
-function* signInSaga(action: ActionType<typeof sign.sign_in>) {
+export function* signInSaga(action: ActionType<typeof sign.sign_in>) {
   const history = yield getContext('history' as string);
-  // const userInfo = yield call(signInApi, id, password);
-  const userId = localStorage.getItem('userId') || '';
+  const possible = yield call(signInApi, action.payload.id, action.payload.pwd);
 
-  if (userId == '' || action.payload.id != userId) {
-    yield put(sign.sign_in_fail());
-    yield put(
-      snackbar.snackbar_call({
-        open: true,
-        duration: 3000,
-        type: 'error',
-        message: '로그인 실패.',
-      }),
-    );
-  } else {
+  if(possible){
     history.push('/home');
     yield put(sign.sign_in_success(action.payload.id));
     yield put(
@@ -84,6 +85,17 @@ function* signInSaga(action: ActionType<typeof sign.sign_in>) {
       }),
     );
     yield put(user.check(action.payload.id));
+
+  }else{
+    yield put(sign.sign_in_fail());
+    yield put(
+      snackbar.snackbar_call({
+        open: true,
+        duration: 3000,
+        type: 'error',
+        message: '로그인 실패.',
+      }),
+    );
   }
 }
 
@@ -91,7 +103,7 @@ export function* watchSignIn() {
   yield takeLatest(sign.SIGN_IN, signInSaga);
 }
 
-function* signOutSaga() {
+export function* signOutSaga() {
   localStorage.setItem('userId', '');
   yield put(sign.sign_out_success());
   yield put(
@@ -110,13 +122,13 @@ export function* watchSignOut() {
 }
 
 // 회원가입 SAGA
-function* signUpSaga(action: ActionType<typeof sign.sign_up>) {
+export function* signUpSaga(action: ActionType<typeof sign.sign_up>) {
   try {
     const history = yield getContext('history');
     // const {data} = yield axios.post(process.env.SIGN_UP_URL, action.payload);
-    const userId = localStorage.getItem('userId') || '';
+    const possible = yield call(signUpApi, action.payload.id);
 
-    if (userId == '' || action.payload.id != userId) {
+    if(possible){
       localStorage.setItem('userId', action.payload.id);
       yield all([
         put(sign.sign_up_success()),

@@ -8,6 +8,7 @@ import rootReducer from '../../modules';
 
 function render(ui, { initialState, ...renderOptions }) {
   const store = createStore(rootReducer, initialState);
+
   const CustomWrapper: React.FC = ({ children }) => {
     return <Provider store={store}>{children}</Provider>;
   };
