@@ -6,9 +6,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import rootReducer from '../../modules';
 
-function render(ui, { initialState, ...renderOptions }) {
-  const store = createStore(rootReducer, initialState);
-
+function render(ui, { initialState = {}, store = createStore(rootReducer, initialState), ...renderOptions } = {}) {
   const CustomWrapper: React.FC = ({ children }) => {
     return <Provider store={store}>{children}</Provider>;
   };
