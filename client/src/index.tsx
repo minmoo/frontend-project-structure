@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDom from 'react-dom';
 import { Provider } from 'react-redux';
 import { HelmetProvider } from 'react-helmet-async';
-import ConfigureStore from './configs/store/ConfigureStore';
+import createStore from './configs/store/ConfigureStore';
 import CustomThemeProvider from './configs/themes/ThemeProvider';
 // import CustomSnackbarProvider from './common/snackbar/SnackbarProvider';
 // import ContextSnackbar from './common/snackbar/provider/ContextSnackbar';
@@ -10,7 +10,7 @@ import CustomSnackbar from './components/common/snackbar/container/CustomSnackba
 import App from './App';
 import { check } from './modules/user/actions';
 
-const store = ConfigureStore();
+const store = createStore();
 
 //새로고침 로그인 유지
 function loadUser() {

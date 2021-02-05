@@ -1,9 +1,7 @@
-import * as actions from '../actions';
+import sign, {actions} from '../slice';
 import * as snackbar from '../../snackbar/actions';
 import * as user from '../../user/actions';
-import sign from '../reducer';
-import {useSignIn} from '../hooks';
-import {watchSignUp, signInApi, watchSignIn, signUpApi, signUpSaga} from '../sagas';
+import {signIn,signUp, signInApi, watchSignIn, signUpApi, signUpSaga} from '../sagas';
 import {renderHook, act} from '@testing-library/react-hooks';
 import { expectSaga} from 'redux-saga-test-plan';
 import {throwError} from 'redux-saga-test-plan/providers';
@@ -18,25 +16,24 @@ describe("actions", ()=>{
             pwd: "123"
         }
         const expectedAction = {
-            type: actions.SIGN_IN,
+            type: signIn.type,
             payload
         }
 
-        expect(actions.sign_in(payload)).toEqual(expectedAction);
+        expect(signIn(payload)).toEqual(expectedAction);
     })
 });
 
 //reducer test
 describe("reducer", () => {
-    test('should handle SIGN_IN_FAIL', () => {
-        expect(
-            sign({error: ''}, {
-                type: actions.SIGN_IN_FAIL
-            })
-        ).toEqual({
-            error: 'Y'
-        })
-    })
+    test('has initial state', () => {
+        expect(sign(undefined, {type: '@@INIT'})).toEqual({"error": ""});
+    });
+
+    test('handle sign in fail', () => {
+        const state = sign({error: ""}, actions.signInFail());
+        expect(state).toEqual({error: "Y"});
+    });
 });
 
 //hook test
@@ -83,13 +80,13 @@ describe("redux-saga test plan", () => {
 
         //watch TEST
            return expectSaga(watchSignIn)
-            .dispatch({type:actions.SIGN_IN, payload: payload})
+            .dispatch(signIn(payload))
             .withReducer(sign)  //Reducer를 함께 테스트
             .provide([ //mocking
                 [getContext("history"), []],
                 [call(signInApi, payload.id, payload.pwd), true] //로그인 성공 만들기
             ])
-            .put(actions.sign_in_success(payload.id))
+            .put(actions.signInSuccess(payload.id))
             .put({type: snackbar.SNACKBAR_CALL, payload: snackbarOption})
             .put(user.check(payload.id))
             .hasFinalState({    //state의 최종 상태 확인
@@ -106,11 +103,11 @@ describe("redux-saga test plan", () => {
             name:"minsu"
         } 
         
-        return expectSaga(signUpSaga, actions.sign_up(payload))
+        return expectSaga(signUpSaga, signUp(payload))
         .provide([
             [call(signUpApi, "minsu"), throwError(error)]
         ])
-        .put(actions.sign_up_fail())
+        .put(actions.signUpFail())
         .run()
     })
 })

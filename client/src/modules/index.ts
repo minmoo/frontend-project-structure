@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from '@reduxjs/toolkit';
 import { all, fork } from 'redux-saga/effects';
 import layout from './layout';
 import websocket from './websocket';

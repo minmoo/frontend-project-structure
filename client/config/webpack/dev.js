@@ -65,6 +65,7 @@ module.exports = {
     devServer: {
         port: 8080, //7008
         host: '0.0.0.0',
+        hot: true,                    //HMR(Hot Module Replacement)
         contentBase: buildPath,       //정적파일을 제공할 경로 (default 웹팩 아웃풋)
         publicPath: "/",              //브라우져를 통해 접근하는 경로 (default /)
         overlay: true,                //빌드시 에러나 경고를 브라우져 화면에 표시한다.
