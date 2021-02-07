@@ -30,6 +30,7 @@ function* userCheckSaga(action: ActionType<typeof user.check>) {
   }
 }
 
-export function* watchCheck() {
+export default function* watchCheck() {
   yield takeLatest(user.CHECK, userCheckSaga);
 }
+

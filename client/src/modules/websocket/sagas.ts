@@ -71,7 +71,7 @@ function* handleIO(socket: SocketIOClient.Socket) {
   yield fork(write, socket);
 }
 
-export function* flow() {
+export default function* flow() {
   while (true) {
     yield take(ws.CONNECT);
     const { socket, error } = yield call(connect);

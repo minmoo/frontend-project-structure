@@ -1,38 +1,19 @@
-import { takeEvery, put, all, getContext, takeLatest, call } from 'redux-saga/effects';
+import { takeEvery, put, all, getContext, takeLatest, call, fork } from 'redux-saga/effects';
 import {createAction, PayloadAction} from '@reduxjs/toolkit';
 import {TSignIn, TSignUp} from './types';
 import {actions} from './slice';
 import * as snackbar from '../snackbar/actions';
 import * as user from '../user/actions';
+import * as api from '../../lib/api/sign';
 
 //비동기 watch액션 만들기
 export const signIn = createAction<TSignIn>("sign/signIn");
 export const signOut = createAction("sign/signOut");
 export const signUp = createAction<TSignUp>("sign/signUp");
 
-export function signInApi(id, password) {
-  const userId = localStorage.getItem('userId') || '';
-  if(userId == '' || id != userId){
-    return false;
-  }
-  return true;
-}
-
-export function signUpApi(id){
-  const userId = localStorage.getItem('userId') || '';
-  if(userId == '' || id != userId){
-    return true;
-  }
-  return false;
-}
-
-function signOutApi(id) {
-  return true;
-}
-
 export function* signInSaga(action: PayloadAction<TSignIn>) {
   const history = yield getContext('history' as string);
-  const possible = yield call(signInApi, action.payload.id, action.payload.pwd);
+  const possible = yield call(api.signIn, {id: action.payload.id, pwd:action.payload.pwd});
 
   if(possible){
     history.push('/home');
@@ -87,7 +68,7 @@ export function* signUpSaga(action: PayloadAction<TSignUp>) {
   try {
     const history = yield getContext('history');
     // const {data} = yield axios.post(process.env.SIGN_UP_URL, action.payload);
-    const possible = yield call(signUpApi, action.payload.id);
+    const possible = yield call(api.signUp, {id:action.payload.id, pwd:action.payload.pwd});
 
     if(possible){
       localStorage.setItem('userId', action.payload.id);
@@ -130,4 +111,8 @@ export function* signUpSaga(action: PayloadAction<TSignUp>) {
 
 export function* watchSignUp() {
   yield takeEvery(signUp, signUpSaga);
+}
+
+export default function* signRootSaga(): Generator {
+  yield all([fork(watchSignIn), fork(watchSignUp), fork(watchSignOut)]);
 }

@@ -9,7 +9,7 @@
     "sourceMap": true,
     "downlevelIteration": true,
     "esModuleInterop": true,
-    "types": ["@types/jest"]
+    "types": ["@types/jest", "webpack-env"] // require.context사용
   },
   "exclude": ["node_modules"],
   "include": ["src"]

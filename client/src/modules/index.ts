@@ -7,10 +7,6 @@ import snackbar from './snackbar';
 import user from './user';
 // import loading from './loading';
 
-import { flow } from './websocket/sagas';
-import { watchSignUp, watchSignIn, watchSignOut } from './sign/sagas';
-import { watchCheck } from './user/sagas';
-
 const rootReducer = combineReducers({
   layout,
   websocket,
@@ -24,6 +20,17 @@ export default rootReducer;
 
 export type RootState = ReturnType<typeof rootReducer>;
 
+/*
+ Auto load Sagas default
+*/
+const sagaContexts = require.context('.', true, /.*(sagas.ts)$/i); // imports all ~sagas.ts file
+
 export function* rootSaga(): Generator {
-  yield all([fork(flow), fork(watchSignUp), fork(watchSignIn), fork(watchSignOut), fork(watchCheck)]);
+  yield all(
+    sagaContexts.keys().map((filename) => {
+      if(sagaContexts(filename).default){
+        return fork(sagaContexts(filename).default)
+      }
+    })
+  );
 }

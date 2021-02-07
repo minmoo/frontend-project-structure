@@ -1,7 +1,8 @@
 import sign, {actions} from '../slice';
 import * as snackbar from '../../snackbar/actions';
 import * as user from '../../user/actions';
-import {signIn,signUp, signInApi, watchSignIn, signUpApi, signUpSaga} from '../sagas';
+import {signIn,signUp, watchSignIn, signUpSaga} from '../sagas';
+import * as api from '../../../lib/api/sign';
 import {renderHook, act} from '@testing-library/react-hooks';
 import { expectSaga} from 'redux-saga-test-plan';
 import {throwError} from 'redux-saga-test-plan/providers';
@@ -84,7 +85,7 @@ describe("redux-saga test plan", () => {
             .withReducer(sign)  //Reducer를 함께 테스트
             .provide([ //mocking
                 [getContext("history"), []],
-                [call(signInApi, payload.id, payload.pwd), true] //로그인 성공 만들기
+                [call(api.signIn, {id: payload.id, pwd:payload.pwd}), true] //로그인 성공 만들기
             ])
             .put(actions.signInSuccess(payload.id))
             .put({type: snackbar.SNACKBAR_CALL, payload: snackbarOption})
@@ -105,7 +106,7 @@ describe("redux-saga test plan", () => {
         
         return expectSaga(signUpSaga, signUp(payload))
         .provide([
-            [call(signUpApi, "minsu"), throwError(error)]
+            [call(api.signUp, {id:"minsu",pwd:"123"}), throwError(error)]
         ])
         .put(actions.signUpFail())
         .run()
