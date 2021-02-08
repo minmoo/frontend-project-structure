@@ -5,6 +5,7 @@ import websocket from './websocket';
 import sign from './sign';
 import snackbar from './snackbar';
 import user from './user';
+import { useSelector } from 'react-redux';
 // import loading from './loading';
 
 const rootReducer = combineReducers({
@@ -33,4 +34,14 @@ export function* rootSaga(): Generator {
       }
     })
   );
+}
+
+/*
+ Common Hook
+*/
+type StateSelector<T> = (state:RootState) => T;
+type EqualityFn<T> = (left: T, right: T) => boolean;
+
+export function useRootState<T>(selector: StateSelector<T>, equalityFn?: EqualityFn<T>){
+  return useSelector(selector, equalityFn);
 }

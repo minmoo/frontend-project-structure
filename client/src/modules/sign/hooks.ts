@@ -1,9 +1,9 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useCallback, useEffect } from 'react';
 import {signUp, signIn, signOut} from './sagas';
 import { TSignUp, TSignIn} from './types';
-import {RootState} from '../../modules'
 import { useHistory } from 'react-router-dom';
+import {useRootState}from '../';
 
 
 
@@ -15,8 +15,7 @@ export const useSignOut = (): (() => ReturnType<typeof signOut>) => {
 
 const useSignCheck = () => {
   const history = useHistory();
-
-  const userId = useSelector(({ user }: RootState) => user.userId);
+  const userId = useRootState(state => state.user.userId);
   useEffect(() => {
     if (userId) {
       history.push('/home');
