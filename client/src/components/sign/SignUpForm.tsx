@@ -4,10 +4,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import * as yup from 'yup';
-import { useSignUp } from '../../../modules/sign/hooks';
-import { RootState } from '../../../modules';
-import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
+import { useSignUp } from '../../modules/sign/hooks';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -38,18 +35,9 @@ const schema = yup.object().shape({
   passwordConfirm: yup.string().oneOf([yup.ref('password'), null], 'password가 일치하지 않습니다.'),
 });
 
-export default function SignIn(): React.ReactElement {
+export default function SignUpForm(): React.ReactElement {
   const classes = useStyles();
-
-  const onSignUp = useSignUp();
-  const userId = useSelector(({ user }: RootState) => user.userId);
-  const history = useHistory();
-
-  React.useEffect(() => {
-    if (userId) {
-      history.push('/home');
-    }
-  }, [history, userId]);
+  const { onSignUp } = useSignUp();
 
   // eslint-disable-next-line @typescript-eslint/unbound-method
   const { handleSubmit, register, errors } = useForm({

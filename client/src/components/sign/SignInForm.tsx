@@ -6,10 +6,7 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import { useSignIn } from '../../../modules/sign/hooks';
-import { RootState } from '../../../modules';
-import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
+import { useSignIn } from '../../modules/sign/hooks';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -43,16 +40,7 @@ const schema = yup.object().shape({
 
 export default function SignInForm(): React.ReactElement {
   const classes = useStyles();
-  const onSignIn = useSignIn();
-  const history = useHistory();
-
-  const userId = useSelector(({ user }: RootState) => user.userId);
-
-  React.useEffect(() => {
-    if (userId) {
-      history.push('/home');
-    }
-  }, [history, userId]);
+  const { onSignIn } = useSignIn();
 
   const { handleSubmit, register, errors } = useForm({
     resolver: yupResolver(schema),

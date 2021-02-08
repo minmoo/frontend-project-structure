@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render, screen } from '../../../../lib/test/test-utils';
+import { fireEvent, render, screen } from '../../../lib/test/test-utils';
 import SignInForm from '../SignInForm';
 
 //실패하는 테스트를 작성

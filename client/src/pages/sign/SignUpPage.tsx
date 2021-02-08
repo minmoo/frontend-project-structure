@@ -1,6 +1,6 @@
 import React from 'react';
 import SignTemplate from '../../components/sign/SignTemplate';
-import SignUpForm from '../../components/sign/container/SignUpForm';
+import SignUpForm from '../../components/sign/SignUpForm';
 
 export default function SignUpPage(): React.ReactElement {
   return (
