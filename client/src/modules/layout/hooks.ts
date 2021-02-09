@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useCallback } from 'react';
-import { navbar_toggle } from './actions';
+import { actions } from './';
 import {useRootState} from '../';
 import { useHistory } from 'react-router';
 import { useSignOut } from '../sign/hooks';
@@ -8,7 +8,7 @@ import { useSignOut } from '../sign/hooks';
 
 const useNavbarToggle = () => {
   const dispatch = useDispatch();
-  const onNavbarToggle = useCallback(() => dispatch(navbar_toggle()), [dispatch]);
+  const onNavbarToggle = useCallback(() => dispatch(actions.navbarToggle()), [dispatch]);
   return () => {onNavbarToggle()}
 }
 

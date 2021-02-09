@@ -1,7 +1,5 @@
-import { ActionType } from 'typesafe-actions';
 import { SvgIconTypeMap } from '@material-ui/core';
 import { OverridableComponent } from '@material-ui/core/OverridableComponent';
-import * as actions from './actions';
 
 export type TNavItem = {
   id: string;
@@ -26,5 +24,3 @@ export type TLayout = {
   navbar: TNavbar;
   toolbar: TToolbar;
 };
-
-export type TLayoutAction = ActionType<typeof actions>;

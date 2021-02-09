@@ -1,4 +1,4 @@
-export { default } from './reducer';
-export * from './actions';
+export { default } from './slice';
+export {actions} from './slice';
 export * from './types';
 export * from './hooks';
