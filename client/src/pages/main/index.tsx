@@ -36,7 +36,7 @@ const useLayoutStyles = makeStyles((theme: Theme) => {
       [theme.breakpoints.up('sm')]: {
         width: `calc(100% - ${drawerWidth}px)`,
         marginLeft: drawerWidth,
-        backgroundColor: theme.palette.primary,
+        backgroundColor: theme.palette.background.default,
       },
     },
     toolBar: theme.mixins.toolbar, //content to be below app bar

@@ -9,6 +9,7 @@ import CustomThemeProvider from './configs/themes/ThemeProvider';
 import CustomSnackbar from './components/common/snackbar/container/CustomSnackbar';
 import App from './App';
 import { check } from './modules/user/actions';
+import GlobalStyles from './configs/themes/GlobalStyles';
 
 const store = createStore();
 
@@ -27,6 +28,7 @@ loadUser();
 
 ReactDom.render(
   <CustomThemeProvider>
+    <GlobalStyles />
     <Provider store={store}>
       <HelmetProvider>
         {/* <CustomSnackbarProvider>
