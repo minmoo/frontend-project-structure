@@ -5,8 +5,6 @@ import { TSignUp, TSignIn} from './types';
 import { useHistory } from 'react-router-dom';
 import {useRootState}from '../';
 
-
-
 export const useSignOut = (): (() => ReturnType<typeof signOut>) => {
   const dispatch = useDispatch();
   const onSignOut = useCallback(() => dispatch(signOut()), [dispatch]);

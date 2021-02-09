@@ -1,6 +1,17 @@
 import * as React from 'react';
-import { AppBar, Button, createStyles, IconButton, makeStyles, Theme, Toolbar, Typography } from '@material-ui/core';
+import {
+  AppBar,
+  Button,
+  createStyles,
+  IconButton,
+  makeStyles,
+  Theme,
+  Toolbar,
+  Typography,
+  Hidden,
+} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
+import { useToolbar } from '../../../modules/layout';
 
 type TStyle = {
   breakWidth: number;
@@ -26,22 +37,9 @@ const useStyles = makeStyles<Theme, TStyle>((theme: Theme) =>
   }),
 );
 
-type TProps = {
-  title: string;
-  isSignIn: boolean;
-  breakWidth: number;
-  handleSignClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  handleToggle: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-};
-
-export default function ToolbarHeader({
-  title,
-  isSignIn,
-  breakWidth = 40,
-  handleSignClick,
-  handleToggle,
-}: TProps): React.ReactElement {
-  const classes = useStyles({ breakWidth: breakWidth });
+export default function ToolbarHeader(): React.ReactElement {
+  const { layout, userId, handleNavbarToggle, handleSignOut, handleSignIn } = useToolbar();
+  const classes = useStyles({ breakWidth: layout.breakWidth });
 
   return (
     <AppBar position="fixed" className={classes.appBar}>
@@ -51,16 +49,16 @@ export default function ToolbarHeader({
           className={classes.menuButton}
           color="inherit"
           aria-label="menu"
-          onClick={handleToggle}
+          onClick={handleNavbarToggle}
         >
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" className={classes.title}>
-          {title}
+          {layout.toolbar.title}
         </Typography>
 
-        <Button color="inherit" onClick={handleSignClick}>
-          {isSignIn ? 'Sign Out' : 'Sign In'}
+        <Button color="inherit" onClick={userId ? handleSignOut : handleSignIn}>
+          {userId ? 'Sign Out' : 'Sign In'}
         </Button>
       </Toolbar>
     </AppBar>

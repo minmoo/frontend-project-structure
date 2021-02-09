@@ -5,8 +5,8 @@ import { Container } from '@material-ui/core';
 import { History } from 'history';
 import Router, { TRoutesProps } from '../../configs/router';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import CustomToolbar from '../../components/common/toolbar/container/CustomToolbar';
-import CustomNavbar from '../../components/common/navbar/container/CustomNavbar';
+import Toolbar from '../../components/common/toolbar';
+import Navbar from '../../components/common/navbar';
 
 const useLayoutStyles = makeStyles((theme: Theme) => {
   const drawerWidth = theme.spacing(30);
@@ -57,8 +57,8 @@ export default function Layout({ routes }: TRoutesProps): React.ReactElement {
 
   return (
     <div className={classes.root}>
-      <CustomToolbar />
-      <CustomNavbar />
+      <Toolbar />
+      <Navbar />
       <main className={classes.content}>
         <div className={classes.toolBar} />
         <Container maxWidth="lg" className={classes.container}>
