@@ -5,9 +5,10 @@
     "editor.formatOnSave": true
   },
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-},
-"[typescript]": {
+    "source.fixAll.eslint": true,
+    "source.organizeImports": true //unused import remove
+  },
+  "[typescript]": {
     "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
-}
+  }
 }

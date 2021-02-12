@@ -1,13 +1,8 @@
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import * as React from 'react';
-// import LoToolbar from './loToolbar';
-// import LoNavBar from './loNavbar';
-import { Container } from '@material-ui/core';
-import { History } from 'history';
-import { useRootState } from '../../modules';
-import Router, { TRoutesProps } from '../../configs/router';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Toolbar from '../../components/common/toolbar';
 import Navbar from '../../components/common/navbar';
+import Toolbar from '../../components/common/toolbar';
+import Router, { TRoutesProps } from '../../configs/router';
 
 const useLayoutStyles = makeStyles<Theme>((theme) =>
   createStyles({

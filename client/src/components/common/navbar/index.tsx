@@ -1,13 +1,12 @@
-import React from 'react';
-import { Drawer, Hidden, List, Box, Avatar, Typography, IconButton } from '@material-ui/core';
-import { useNavbar } from '../../../modules/layout';
-import { makeStyles, createStyles, Theme, useTheme } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
-import NavItem from './NavItem';
+import { Avatar, Box, Drawer, Hidden, IconButton, List, Typography } from '@material-ui/core';
 import { deepPurple } from '@material-ui/core/colors';
+import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import themeMap from '../../../configs/themes/base';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useNavbar } from '../../../modules/layout';
+import NavItem from './NavItem';
 
 const useStyles = makeStyles<Theme>((theme: Theme) =>
   createStyles({
