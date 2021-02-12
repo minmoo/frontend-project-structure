@@ -19,4 +19,9 @@ export const darkTheme = createMuiTheme({
   status: {
     danger: 'orange',
   },
+  custom: {
+    navbar: {
+      width: 200,
+    },
+  },
 } as ThemeOptions);

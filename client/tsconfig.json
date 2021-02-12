@@ -9,6 +9,7 @@
     "sourceMap": true,
     "downlevelIteration": true,
     "esModuleInterop": true,
+    "typeRoots": ["./node_modules/@types", "./src/configs/themes"], //type extend
     "types": ["@types/jest", "webpack-env"] // require.context사용
   },
   "exclude": ["node_modules"],

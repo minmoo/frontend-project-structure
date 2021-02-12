@@ -11,6 +11,7 @@ export type TNavItem = {
 };
 
 export type TNavbar = {
+  isMini: boolean;
   isOpen: boolean;
   items: TNavItem[];
 };
@@ -20,7 +21,6 @@ export type TToolbar = {
 };
 
 export type TLayout = {
-  breakWidth: number;
   navbar: TNavbar;
   toolbar: TToolbar;
 };

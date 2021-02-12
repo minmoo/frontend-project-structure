@@ -1,30 +1,30 @@
 import * as React from 'react';
-import {
-  AppBar,
-  Button,
-  createStyles,
-  IconButton,
-  makeStyles,
-  Theme,
-  Toolbar,
-  Typography,
-  Hidden,
-} from '@material-ui/core';
+import { AppBar, Button, createStyles, IconButton, makeStyles, Theme, Toolbar, Typography } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import { useToolbar } from '../../../modules/layout';
 
-type TStyle = {
-  breakWidth: number;
-};
-
-const useStyles = makeStyles<Theme, TStyle>((theme: Theme) =>
+const useStyles = makeStyles<Theme>((theme: Theme) =>
   createStyles({
-    appBar: (props) => ({
+    appBar: {
       [theme.breakpoints.up('sm')]: {
-        width: `calc(100% - ${props.breakWidth}px)`,
-        marginLeft: props.breakWidth,
+        width: `calc(100% - ${theme.custom.navbar.width}px)`,
+        marginLeft: theme.custom.navbar.width,
       },
-    }),
+      transition: theme.transitions.create(['width', 'margin'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+    },
+    appBarMini: {
+      transition: theme.transitions.create(['width', 'margin'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+      [theme.breakpoints.up('sm')]: {
+        width: `calc(100% - ${theme.spacing(8)}px)`,
+        marginLeft: theme.spacing(8),
+      },
+    },
     menuButton: {
       marginRight: theme.spacing(2),
       [theme.breakpoints.up('sm')]: {
@@ -39,10 +39,10 @@ const useStyles = makeStyles<Theme, TStyle>((theme: Theme) =>
 
 export default function ToolbarHeader(): React.ReactElement {
   const { layout, userId, handleNavbarToggle, handleSignOut, handleSignIn } = useToolbar();
-  const classes = useStyles({ breakWidth: layout.breakWidth });
+  const classes = useStyles();
 
   return (
-    <AppBar position="fixed" className={classes.appBar}>
+    <AppBar position="fixed" className={`${layout.navbar.isMini ? classes.appBarMini : classes.appBar}`}>
       <Toolbar>
         <IconButton
           edge="start"

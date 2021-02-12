@@ -1,26 +1,42 @@
 import React from 'react';
-import { Drawer, Hidden, List, Box, Avatar, Typography } from '@material-ui/core';
+import { Drawer, Hidden, List, Box, Avatar, Typography, IconButton } from '@material-ui/core';
 import { useNavbar } from '../../../modules/layout';
 import { makeStyles, createStyles, Theme, useTheme } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import NavItem from './NavItem';
 import { deepPurple } from '@material-ui/core/colors';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
-type TStyleProps = {
-  breakWidth: number;
-};
-const useStyles = makeStyles<Theme, TStyleProps>((theme: Theme) =>
+const useStyles = makeStyles<Theme>((theme: Theme) =>
   createStyles({
-    drawer: (props) => ({
-      [theme.breakpoints.up('sm')]: {
-        width: props.breakWidth,
-        flexShink: 0,
-      },
-    }),
-    paper: (props) => ({
-      width: props.breakWidth,
-    }),
-    mixin: theme.mixins.toolbar,
+    drawer: {
+      width: theme.custom.navbar.width,
+      flexShrink: 0,
+      whiteSpace: 'nowrap',
+    },
+    paper: {
+      width: theme.custom.navbar.width,
+      transition: theme.transitions.create('width', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+    },
+    miniPaper: {
+      transition: theme.transitions.create('width', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+      width: theme.spacing(8),
+      overflowX: 'hidden',
+    },
+    toolbar: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'flex-end',
+      padding: theme.spacing(0, 1),
+      ...theme.mixins.toolbar,
+    },
     avatar: {
       cursor: 'pointer',
       width: 44,
@@ -29,28 +45,36 @@ const useStyles = makeStyles<Theme, TStyleProps>((theme: Theme) =>
       backgroundColor: deepPurple[500],
       marginRight: theme.spacing(1),
     },
+    title: {
+      paddingRight: theme.spacing(1),
+    },
   }),
 );
 
 export default function Navbar(): React.ReactElement {
-  const { layout, handleClose } = useNavbar();
-  const classes = useStyles({ breakWidth: layout.breakWidth });
-
+  const { navbar, handleClose, handleNavbarMini } = useNavbar();
+  const classes = useStyles();
   const theme = useTheme();
 
   const content = (
     <Box height="100%" display="flex" flexDirection="column">
-      <Box className={classes.mixin} alignItems="center" display="flex" p={2}>
+      <Box className={classes.toolbar}>
         <Avatar className={classes.avatar} component={Link} to="/home/dashboard">
           SSG
         </Avatar>
-        <Typography color="textPrimary" variant="h5">
+        <Typography className={classes.title} color="textPrimary" variant="h5">
           Admin
         </Typography>
+
+        {!navbar.isOpen && (
+          <IconButton onClick={handleNavbarMini}>
+            {navbar.isMini ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+          </IconButton>
+        )}
       </Box>
 
       <List component="nav" className={classes.navItems}>
-        {layout.navbar.items.map((item) => (
+        {navbar.items.map((item) => (
           <NavItem {...item} key={item.id} />
         ))}
       </List>
@@ -58,7 +82,7 @@ export default function Navbar(): React.ReactElement {
   );
 
   return (
-    <nav className={classes.drawer}>
+    <nav>
       {/* Mobile */}
       <Hidden smUp implementation="css">
         <Drawer
@@ -68,7 +92,7 @@ export default function Navbar(): React.ReactElement {
           }}
           anchor={theme.direction == 'rtl' ? 'right' : 'left'}
           onClose={handleClose}
-          open={layout.navbar.isOpen}
+          open={navbar.isOpen}
           ModalProps={{
             keepMounted: true, // Better open performance on mobile
           }}
@@ -80,8 +104,9 @@ export default function Navbar(): React.ReactElement {
       {/* PC */}
       <Hidden xsDown implementation="css">
         <Drawer
+          className={`${classes.drawer} ${navbar.isMini ? classes.miniPaper : classes.paper}`}
           classes={{
-            paper: classes.paper,
+            paper: `${navbar.isMini ? classes.miniPaper : classes.paper}`,
           }}
           variant="permanent"
         >
