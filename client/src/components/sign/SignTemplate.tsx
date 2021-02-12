@@ -1,7 +1,7 @@
-import React from 'react';
-import { Avatar, Grid, Paper, Typography, Grow } from '@material-ui/core';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { Avatar, Grid, Grow, Paper, Typography } from '@material-ui/core';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import React from 'react';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     sideTitle: {
       margin: theme.spacing(10, 10),
+      color: theme.palette.getContrastText(theme.palette.secondary.main),
     },
     avatar: {
       margin: theme.spacing(1),
@@ -65,7 +66,7 @@ export default function SignTemplate(props: TSignProps): React.ReactElement {
         </div>
         <div className={classes.side}>
           <Grow in={true} {...{ timeout: 1000 }}>
-            <Typography variant="h2" className={classes.sideTitle}>
+            <Typography variant="h1" className={classes.sideTitle}>
               Welcome
               <br /> to the
               <br /> Back Office
