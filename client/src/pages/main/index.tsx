@@ -14,19 +14,25 @@ const useLayoutStyles = makeStyles<Theme>((theme) =>
     root: {
       display: 'flex',
     },
-    mixin: theme.mixins.toolbar, //Toolbar 공간 채우기 위해
-    container: {
+    toolbar: {
+      display: 'flex',
+      ...theme.mixins.toolbar,
+    },
+    wrapper: {
+      display: 'flex',
+      flex: '1 1 auto',
+      overflow: 'hidden',
+    },
+    contentContainer: {
       display: 'flex',
       flex: '1 1 auto',
       overflow: 'hidden',
     },
     content: {
-      flexGrow: 1,
+      flex: '1 1 auto',
+      height: '100%',
+      overflow: 'auto',
       padding: theme.spacing(3),
-    },
-    toolbar: {
-      display: 'flex',
-      ...theme.mixins.toolbar,
     },
   }),
 );
@@ -38,10 +44,19 @@ export default function Layout({ routes }: TRoutesProps): React.ReactElement {
     <div className={classes.root}>
       <Toolbar />
       <Navbar />
-      <main className={classes.content}>
+      {/* <main className={classes.content}>
         <div className={classes.toolbar} />
         <Router routes={routes} />
-      </main>
+      </main> */}
+
+      <div className={classes.wrapper}>
+        <div className={classes.contentContainer}>
+          <div className={classes.content}>
+            <div className={classes.toolbar} />
+            <Router routes={routes} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
