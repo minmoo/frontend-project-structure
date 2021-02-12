@@ -7,6 +7,7 @@ import NavItem from './NavItem';
 import { deepPurple } from '@material-ui/core/colors';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import themeMap from '../../../configs/themes/base';
 
 const useStyles = makeStyles<Theme>((theme: Theme) =>
   createStyles({
@@ -23,12 +24,15 @@ const useStyles = makeStyles<Theme>((theme: Theme) =>
       }),
     },
     miniPaper: {
-      transition: theme.transitions.create('width', {
+      'transition': theme.transitions.create('width', {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
       }),
-      width: theme.spacing(8),
-      overflowX: 'hidden',
+      'width': theme.spacing(8),
+      'overflowX': 'hidden',
+      '&:hover': {
+        width: theme.custom.navbar.width,
+      },
     },
     toolbar: {
       display: 'flex',
