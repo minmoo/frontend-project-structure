@@ -1,6 +1,5 @@
 import { Box, Button, Card, CardHeader, Divider, CardContent, Typography } from '@material-ui/core';
 import { LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Line } from 'recharts';
-import React from 'react';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 const data = [

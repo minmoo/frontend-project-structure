@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import '@testing-library/react/pure'; //cleanup tp run and the afterEach
 import '@testing-library/jest-dom';
 import { render as rtlRender } from '@testing-library/react';

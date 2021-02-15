@@ -1,5 +1,4 @@
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import * as React from 'react';
 import Navbar from '../../components/common/navbar';
 import Toolbar from '../../components/common/toolbar';
 import Router, { TRoutesProps } from '../../configs/router';

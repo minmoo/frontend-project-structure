@@ -1,7 +1,6 @@
-import * as React from 'react';
 import { Switch } from 'react-router-dom';
-import RouteWithSubRoutes from './RouteWithSubRoutes';
 import { TRoute } from './config';
+import RouteWithSubRoutes from './RouteWithSubRoutes';
 
 export type TRoutesProps = {
   routes: TRoute[];

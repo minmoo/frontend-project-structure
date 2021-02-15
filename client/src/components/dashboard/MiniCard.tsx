@@ -1,7 +1,6 @@
 import { Card, CardContent, Typography, Avatar, Box } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import MoneyIcon from '@material-ui/icons/Money';
-import React from 'react';
 import GridContainer from '../common/GridContainer';
 import GridItem from '../common/GridItem';
 

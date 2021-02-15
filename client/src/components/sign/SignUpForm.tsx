@@ -1,8 +1,7 @@
-import * as React from 'react';
-import { Link, Button, TextField, Typography, Box } from '@material-ui/core';
-import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { Box, Button, Link, TextField, Typography } from '@material-ui/core';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { useSignUp } from '../../modules/sign/hooks';
 

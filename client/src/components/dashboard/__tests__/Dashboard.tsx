@@ -1,13 +1,4 @@
-import React from 'react';
-import {
-  findByText,
-  fireEvent,
-  getByText,
-  render,
-  screen,
-  waitFor,
-  waitForElementToBeRemoved,
-} from '../../../lib/test/test-utils';
+import { fireEvent, render, screen, waitForElementToBeRemoved } from '../../../lib/test/test-utils';
 import Dashboard from '../Dashboard';
 
 describe('<Dashboard/>', () => {
@@ -25,7 +16,7 @@ describe('<Dashboard/>', () => {
   test('async toggle test', async () => {
     screen.getByText('OFF');
     fireEvent.click(screen.getByTestId('toggle'));
-    const text = await waitFor(() => screen.getByText('ON'));
+    const text = await screen.findByText('ON');
     expect(text).toHaveTextContent('ON');
   });
 

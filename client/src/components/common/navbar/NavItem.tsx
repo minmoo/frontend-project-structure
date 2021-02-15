@@ -1,16 +1,15 @@
-import * as React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { List, ListItem, ListItemIcon, ListItemText, Divider, Collapse } from '@material-ui/core';
-import { NavLink, NavLinkProps } from 'react-router-dom';
+import { Collapse, Divider, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
+import { forwardRef, ReactElement, useState } from 'react';
+import { NavLink, NavLinkProps } from 'react-router-dom';
 import { TNavItem } from '../../../modules/layout/types';
 
 type TStyleProps = {
   bgColor: string;
 };
-const useStyles = makeStyles<Theme, TStyleProps>((theme: Theme) =>
+const useStyles = makeStyles<Theme, TStyleProps>((theme) =>
   createStyles({
     items: {
       '&.active': {
@@ -26,12 +25,12 @@ const useStyles = makeStyles<Theme, TStyleProps>((theme: Theme) =>
   }),
 );
 
-export default function NavItem(props: TNavItem): React.ReactElement | null {
+export default function NavItem(props: TNavItem): ReactElement | null {
   const { title, url, Icon, subItems } = props;
   const classes = useStyles({ bgColor: 'green' });
 
   const isExpandable = subItems && subItems.length > 0;
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const ListChildren = (
     <>
@@ -61,7 +60,7 @@ export default function NavItem(props: TNavItem): React.ReactElement | null {
       <ListItem
         button
         className={classes.items}
-        component={React.forwardRef<HTMLAnchorElement, NavLinkProps>((props: NavLinkProps, ref) => (
+        component={forwardRef<HTMLAnchorElement, NavLinkProps>((props: NavLinkProps, ref) => (
           <NavLink exact {...props} innerRef={ref} />
         ))}
         to={url}

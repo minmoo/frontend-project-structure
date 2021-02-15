@@ -1,4 +1,3 @@
-import React from 'react';
 import { fireEvent, render, screen } from '../../../lib/test/test-utils';
 import SignInForm from '../SignInForm';
 

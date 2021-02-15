@@ -1,4 +1,5 @@
-import React, { useState, useCallback } from 'react';
+import { useState, useCallback } from 'react';
+import * as React from 'react';
 import { Button, Card, CardContent, Typography, TextField } from '@material-ui/core';
 
 type TDashboard = {

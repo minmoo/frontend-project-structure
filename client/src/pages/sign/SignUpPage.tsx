@@ -1,4 +1,3 @@
-import React from 'react';
 import SignTemplate from '../../components/sign/SignTemplate';
 import SignUpForm from '../../components/sign/SignUpForm';
 

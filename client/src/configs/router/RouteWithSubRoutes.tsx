@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { Suspense } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { TRoute } from '../router/config';
 
@@ -6,7 +6,7 @@ const RouteWithSubRoutes = (route: TRoute): React.ReactElement => {
   const authenticated = true; //권한체크
 
   return (
-    <React.Suspense fallback={route.fallback}>
+    <Suspense fallback={route.fallback}>
       <Route
         path={route.path}
         render={(props) =>
@@ -28,7 +28,7 @@ const RouteWithSubRoutes = (route: TRoute): React.ReactElement => {
           )
         }
       />
-    </React.Suspense>
+    </Suspense>
   );
 };
 

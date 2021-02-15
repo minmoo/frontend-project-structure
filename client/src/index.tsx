@@ -1,4 +1,3 @@
-import * as React from 'react';
 import * as ReactDom from 'react-dom';
 import { Provider } from 'react-redux';
 import { HelmetProvider } from 'react-helmet-async';

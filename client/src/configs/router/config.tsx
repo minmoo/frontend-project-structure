@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { lazy } from 'react';
 
 export type TRoute = {
   path: string | string[];
@@ -20,21 +20,21 @@ export const routes: TRoute[] = [
   {
     path: '/home',
     // component: React.lazy(() => import('../../common/layout')),
-    component: React.lazy(() => import('../../pages/main')),
+    component: lazy(() => import('../../pages/main')),
     exact: false,
     private: false,
     fallback: <div> Loading...</div>,
     routes: [
       {
         path: '/home/dashboard',
-        component: React.lazy(() => import('../../pages/main/dashboard')),
+        component: lazy(() => import('../../pages/main/dashboard')),
         exact: false,
         private: false,
         fallback: <div> Loading...</div>,
       },
       {
         path: '/home/websocket',
-        component: React.lazy(() => import('../../pages/main/websocket')),
+        component: lazy(() => import('../../pages/main/websocket')),
         exact: false,
         private: false,
         fallback: <div> Loading...</div>,
@@ -43,13 +43,13 @@ export const routes: TRoute[] = [
   },
   {
     path: ['/signIn', '/logIn'],
-    component: React.lazy(() => import('../../pages/sign/SignInPage')),
+    component: lazy(() => import('../../pages/sign/SignInPage')),
     exact: false,
     fallback: <div>Loading....</div>,
   },
   {
     path: '/signUp',
-    component: React.lazy(() => import('../../pages/sign/SignUpPage')),
+    component: lazy(() => import('../../pages/sign/SignUpPage')),
     exact: false,
     fallback: <div>Loading....</div>,
   },

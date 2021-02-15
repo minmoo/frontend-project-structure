@@ -1,7 +1,6 @@
 import { Avatar, Grid, Grow, Paper, Typography } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import React from 'react';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

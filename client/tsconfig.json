@@ -4,7 +4,7 @@
     "noImplicitAny": false,
     "module": "CommonJS",
     "target": "es5",
-    "jsx": "react",
+    "jsx": "react-jsx",
     "allowJs": true,
     "sourceMap": true,
     "downlevelIteration": true,

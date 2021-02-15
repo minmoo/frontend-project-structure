@@ -1,9 +1,8 @@
-import * as React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Router } from 'react-router-dom';
 import CustomRouter from './configs/router';
 import { routes } from './configs/router/config';
 import { customHistory } from './configs/store/ConfigureStore';
-import { Helmet } from 'react-helmet-async';
 
 export default function App(): React.ReactElement {
   return (

@@ -3,7 +3,7 @@ import { deepPurple } from '@material-ui/core/colors';
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import React from 'react';
+import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { useNavbar } from '../../../modules/layout';
 import NavItem from './NavItem';

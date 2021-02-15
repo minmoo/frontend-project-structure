@@ -1,16 +1,16 @@
-import * as React from 'react';
 import { MuiThemeProvider } from '@material-ui/core';
+import { createContext, useState } from 'react';
 import themeMap from './base';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const ThemeContext = React.createContext((themeName: string): void => {});
+export const ThemeContext = createContext((themeName: string): void => {});
 
 const ThemeProvider: React.FC = (props) => {
   //read current theme from localstorage or maybe from an api
   const curThemeName = localStorage.getItem('appTheme') || 'indigoTheme';
 
   //State to hold the selected theme name
-  const [themeName, _setThemeName] = React.useState(curThemeName);
+  const [themeName, _setThemeName] = useState(curThemeName);
 
   //Get the theme object by theme name
   const theme = themeMap[themeName];

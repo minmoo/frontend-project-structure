@@ -1,12 +1,10 @@
-import React from 'react';
-import DashboardForm from '../../../components/dashboard/container/DashboardForm';
-import Page from '../../../components/common/Page';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { Container } from '@material-ui/core';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import GridContainer from '../../../components/common/GridContainer';
 import GridItem from '../../../components/common/GridItem';
-import MiniCard from '../../../components/dashboard/MiniCard';
+import Page from '../../../components/common/Page';
 import ChartCard from '../../../components/dashboard/ChartCard';
+import MiniCard from '../../../components/dashboard/MiniCard';
 import TableCard from '../../../components/dashboard/TableCard';
 
 const useStyles = makeStyles((theme: Theme) =>

@@ -1,11 +1,11 @@
 import { combineReducers } from '@reduxjs/toolkit';
+import { useSelector } from 'react-redux';
 import { all, fork } from 'redux-saga/effects';
 import layout from './layout';
-import websocket from './websocket';
 import sign from './sign';
 import snackbar from './snackbar';
 import user from './user';
-import { useSelector } from 'react-redux';
+import websocket from './websocket';
 // import loading from './loading';
 
 const rootReducer = combineReducers({
@@ -29,19 +29,19 @@ const sagaContexts = require.context('.', true, /.*(sagas.ts)$/i); // imports al
 export function* rootSaga(): Generator {
   yield all(
     sagaContexts.keys().map((filename) => {
-      if(sagaContexts(filename).default){
-        return fork(sagaContexts(filename).default)
+      if (sagaContexts(filename).default) {
+        return fork(sagaContexts(filename).default);
       }
-    })
+    }),
   );
 }
 
 /*
  Common Hook
 */
-type StateSelector<T> = (state:RootState) => T;
+type StateSelector<T> = (state: RootState) => T;
 type EqualityFn<T> = (left: T, right: T) => boolean;
 
-export function useRootState<T>(selector: StateSelector<T>, equalityFn?: EqualityFn<T>){
+export function useRootState<T>(selector: StateSelector<T>, equalityFn?: EqualityFn<T>) {
   return useSelector(selector, equalityFn);
 }

@@ -23,7 +23,7 @@
     },
     "ecmaVersion": 12,
     "sourceType": "module",
-    "project": "client/tsconfig.json"
+    "project": "tsconfig.json"
   },
   "ignorePatterns": ["config/", "build/", "node_modules/", "**/sagas.ts"],
   "plugins": ["@typescript-eslint", "react-hooks", "testing-library", "jest-dom"],
@@ -41,6 +41,8 @@
     "testing-library/prefer-explicit-assert": "error",
     "testing-library/prefer-presence-queries": "error",
     "testing-library/prefer-screen-queries": "error",
-    "testing-library/prefer-wait-for": "error"
+    "testing-library/prefer-wait-for": "error",
+    "react/jsx-uses-react": "off", //React New JSX Transform 적용
+    "react/react-in-jsx-scope": "off" //React New JSX Transform 적용
   }
 }
