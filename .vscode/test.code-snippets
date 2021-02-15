@@ -15,60 +15,97 @@
   // 	],
   // 	"description": "Log output to console"
   // }
-  "create functional component": {
-    "scope": "typescript,typescriptreact",
-    "prefix": "crsc",
+  "functional component with Styles, Props(indx)": {
+    "prefix": "icsp",
     "body": [
-      "import React from 'react';",
+      "import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';",
       "",
-      "export default function ${TM_FILENAME_BASE}() {",
-      "  return(",
-      "       <>",
-      "       </>",
-      "    )",
-      "}"
-    ]
-  },
-
-  "create functional component with props": {
-    "scope": "typescript,typescriptreact",
-    "prefix": "crscp",
-    "body": [
-      "import React from 'react';",
+      "type TStyleProps = {};",
       "",
-      "type TProps = {",
-      "};",
+      "const useStyles = makeStyles<Theme, TStyleProps>((theme) =>",
+      "  createStyles({",
+      "    root: {},",
+      "    fn: (props) => ({}),",
+      "  }),",
+      ");",
       "",
-      "export default function ${TM_FILENAME_BASE}(props) {",
-      "  const {} = props;",
+      "type T${TM_DIRECTORY/.*\\\\/(.*)$/$1/g}Props = {};",
       "",
-      "  return(",
-      "       <>",
-      "       </>",
-      "    )",
+      "export default function ${TM_DIRECTORY/.*\\\\/(.*)$/$1/g}(props: T${TM_DIRECTORY/.*\\\\/(.*)$/$1/g}Props):React.ReactElement {",
+      "  const classes = useStyles();",
+      "  ",
+      "  return (",
+      "    <></>",
+      "  );",
       "}",
       "",
-      "${TM_FILENAME_BASE}.defaultProps = {",
-      "};"
-    ]
+      ""
+    ],
+    "description": ""
   },
 
-  "styled react functional component": {
-    "prefix": "srfc",
+  "functional component with Styles, Props": {
+    "prefix": "csp",
     "body": [
-      "import React from 'react';",
-      "import styled from 'styled-components';",
+      "import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';",
       "",
-      "const Styled${TM_FILENAME_BASE} = styled.div``;",
+      "type TStyleProps = {};",
       "",
-      "export default function ${TM_FILENAME_BASE}() {",
+      "const useStyles = makeStyles<Theme, TStyleProps>((theme) =>",
+      "  createStyles({",
+      "    root: {},",
+      "    fn: (props) => ({}),",
+      "  }),",
+      ");",
+      "",
+      "type T${TM_FILENAME_BASE}Props = {};",
+      "",
+      "export default function ${TM_FILENAME_BASE}(props: T${TM_FILENAME_BASE}Props):React.ReactElement {",
+      "  const classes = useStyles();",
+      "  ",
       "  return (",
-      "    <Styled${TM_FILENAME_BASE}>",
-      "      ",
-      "    </Styled${TM_FILENAME_BASE}>",
+      "    <></>",
       "  );",
-      "};",
+      "}",
+      "",
       ""
-    ]
+    ],
+    "description": ""
+  },
+  "create react hooks": {
+    "prefix": "crh",
+    "body": [
+      "import { useCallback } from 'react';",
+      "import { useDispatch } from 'react-redux';",
+      "import { useRootState } from '../';",
+      "import { actions } from './';",
+      "",
+      "export const useHooks = () => {",
+      "  const dispatch = useDispatch();",
+      "  const onActions = useCallback(() => dispatch(actions.something()), [dispatch]);",
+      "  const ${TM_DIRECTORY/.*\\\\/(.*)$/$1/g}State = useRootState((state) => state.${TM_DIRECTORY/.*\\\\/(.*)$/$1/g});",
+      "  return {${TM_DIRECTORY/.*\\\\/(.*)$/$1/g}State, onActions};",
+      "}"
+    ],
+    "description": ""
+  },
+  "create redux slice": {
+    "prefix": "crs",
+    "body": [
+      "import { createSlice } from '@reduxjs/toolkit';",
+      "import * as ${TM_DIRECTORY/.*\\\\/(.*)$/$1/g}Types from './types';",
+      "",
+      "const name = '${TM_DIRECTORY/.*\\\\/(.*)$/$1/g}';",
+      "",
+      "const initialState:${TM_DIRECTORY/.*\\\\/(.*)$/$1/g}Types.default = {};",
+      "",
+      "const reducers = {};",
+      "",
+      "const ${TM_DIRECTORY/.*\\\\/(.*)$/$1/g}Slice = createSlice({name, initialState, reducers});",
+      "",
+      "export default ${TM_DIRECTORY/.*\\\\/(.*)$/$1/g}Slice.reducers;",
+      "export const actions = ${TM_DIRECTORY/.*\\\\/(.*)$/$1/g}Slice.actions;"
+    ],
+    "description": ""
   }
 }

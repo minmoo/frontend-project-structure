@@ -2,11 +2,11 @@ import ChatIcon from '@material-ui/icons/Chat';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import { createSlice } from '@reduxjs/toolkit';
-import { TLayout } from './types';
+import * as layoutTypes from './types';
 
 const name = 'layout';
 
-const initialState: TLayout = {
+const initialState: layoutTypes.default = {
   toolbar: {
     title: 'Title',
   },

@@ -20,7 +20,9 @@ export type TToolbar = {
   title: string;
 };
 
-export type TLayout = {
+type TLayout = {
   navbar: TNavbar;
   toolbar: TToolbar;
 };
+
+export default TLayout;

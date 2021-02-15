@@ -1,9 +1,9 @@
-import { useDispatch } from 'react-redux';
 import { useCallback } from 'react';
-import { actions } from './';
-import { useRootState } from '../';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
+import { useRootState } from '../';
 import { useSignOut } from '../sign/hooks';
+import { actions } from './';
 
 const useNavbarMini = () => {
   const dispatch = useDispatch();
@@ -22,8 +22,6 @@ const useNavbarToggle = () => {
 };
 
 export const useNavbar = () => {
-  const dispatch = useDispatch();
-
   const navbar = useRootState((state) => state.layout.navbar);
   const handleClose = useNavbarToggle();
   const handleNavbarMini = useNavbarMini();
