@@ -11,7 +11,7 @@ const initialState: layoutTypes.default = {
     title: 'Title',
   },
   navbar: {
-    isMini: false,
+    isFix: true,
     isOpen: false,
     items: [
       {
@@ -56,11 +56,11 @@ const initialState: layoutTypes.default = {
 };
 
 const reducers = {
-  navbarToggle(state) {
+  navbarOpenToggle(state) {
     state.navbar.isOpen = !state.navbar.isOpen;
   },
-  navbarMini(state) {
-    state.navbar.isMini = !state.navbar.isMini;
+  navbarFixToggle(state) {
+    state.navbar.isFix = !state.navbar.isFix;
   },
 };
 

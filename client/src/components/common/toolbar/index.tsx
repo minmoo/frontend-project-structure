@@ -41,7 +41,7 @@ export default function ToolbarHeader(): React.ReactElement {
   const classes = useStyles();
 
   return (
-    <AppBar position="fixed" className={`${layout.navbar.isMini ? classes.appBarMini : classes.appBar}`}>
+    <AppBar position="fixed" className={`${layout.navbar.isFix ? classes.appBar : classes.appBarMini}`}>
       <Toolbar>
         <IconButton
           edge="start"

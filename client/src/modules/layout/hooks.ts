@@ -5,32 +5,32 @@ import { useRootState } from '../';
 import { useSignOut } from '../sign/hooks';
 import { actions } from './';
 
-const useNavbarMini = () => {
+const useNavbarFixToggle = () => {
   const dispatch = useDispatch();
-  const onNavbarMini = useCallback(() => dispatch(actions.navbarMini()), [dispatch]);
+  const onNavbarFixToggle = useCallback(() => dispatch(actions.navbarFixToggle()), [dispatch]);
   return () => {
-    onNavbarMini();
+    onNavbarFixToggle();
   };
 };
 
-const useNavbarToggle = () => {
+const useNavbarOpenToggle = () => {
   const dispatch = useDispatch();
-  const onNavbarToggle = useCallback(() => dispatch(actions.navbarToggle()), [dispatch]);
+  const onNavbarOpenToggle = useCallback(() => dispatch(actions.navbarOpenToggle()), [dispatch]);
   return () => {
-    onNavbarToggle();
+    onNavbarOpenToggle();
   };
 };
 
 export const useNavbar = () => {
   const navbar = useRootState((state) => state.layout.navbar);
-  const handleClose = useNavbarToggle();
-  const handleNavbarMini = useNavbarMini();
+  const handleClose = useNavbarOpenToggle();
+  const handleNavbarFix = useNavbarFixToggle();
 
-  return { navbar, handleClose, handleNavbarMini };
+  return { navbar, handleClose, handleNavbarFix };
 };
 
 export const useToolbar = () => {
-  const handleNavbarToggle = useNavbarToggle();
+  const handleNavbarToggle = useNavbarOpenToggle();
   const history = useHistory();
   const onSignOut = useSignOut();
 

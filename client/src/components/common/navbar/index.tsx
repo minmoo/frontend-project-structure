@@ -1,8 +1,6 @@
-import { Avatar, Box, Drawer, Hidden, IconButton, List, Typography } from '@material-ui/core';
+import { Avatar, Box, Drawer, FormControlLabel, Hidden, List, Switch, Typography } from '@material-ui/core';
 import { deepPurple } from '@material-ui/core/colors';
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { Link } from 'react-router-dom';
 import { useNavbar } from '../../../modules/layout';
 import NavItem from './NavItem';
@@ -54,7 +52,7 @@ const useStyles = makeStyles<Theme>((theme: Theme) =>
 );
 
 export default function Navbar(): React.ReactElement {
-  const { navbar, handleClose, handleNavbarMini } = useNavbar();
+  const { navbar, handleClose, handleNavbarFix } = useNavbar();
   const classes = useStyles();
   const theme = useTheme();
 
@@ -69,9 +67,11 @@ export default function Navbar(): React.ReactElement {
         </Typography>
 
         {!navbar.isOpen && (
-          <IconButton onClick={handleNavbarMini}>
-            {navbar.isMini ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-          </IconButton>
+          <FormControlLabel
+            control={<Switch checked={navbar.isFix} onChange={handleNavbarFix} name="fix" />}
+            label="Fix"
+            labelPlacement="start"
+          />
         )}
       </Box>
 
@@ -106,9 +106,9 @@ export default function Navbar(): React.ReactElement {
       {/* PC */}
       <Hidden xsDown implementation="css">
         <Drawer
-          className={`${classes.drawer} ${navbar.isMini ? classes.miniPaper : classes.paper}`}
+          className={`${classes.drawer} ${navbar.isFix ? classes.paper : classes.miniPaper}`}
           classes={{
-            paper: `${navbar.isMini ? classes.miniPaper : classes.paper}`,
+            paper: `${navbar.isFix ? classes.paper : classes.miniPaper}`,
           }}
           variant="permanent"
         >

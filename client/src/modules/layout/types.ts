@@ -11,7 +11,7 @@ export type TNavItem = {
 };
 
 export type TNavbar = {
-  isMini: boolean;
+  isFix: boolean;
   isOpen: boolean;
   items: TNavItem[];
 };
