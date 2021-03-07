@@ -6,6 +6,7 @@ import Page from '../../../components/common/Page';
 import ChartCard from '../../../components/dashboard/ChartCard';
 import MiniCard from '../../../components/dashboard/MiniCard';
 import TableCard from '../../../components/dashboard/TableCard';
+import MuiChartCard from '../../../components/dashboard/MuiChartCard';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -40,6 +41,9 @@ export default function Dashboard(): React.ReactElement {
 
           <GridItem xs={12} xl={3} md={6} lg={4}>
             <TableCard />
+          </GridItem>
+          <GridItem xs={12} xl={9} md={12} lg={8}>
+            <MuiChartCard />
           </GridItem>
         </GridContainer>
       </Container>

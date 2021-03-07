@@ -92,18 +92,18 @@
   "create redux slice": {
     "prefix": "crs",
     "body": [
-      "import { createSlice } from '@reduxjs/toolkit';",
-      "import * as ${TM_DIRECTORY/.*\\\\/(.*)$/$1/g}Types from './types';",
+      "import { createSlice, PayloadAction } from '@reduxjs/toolkit';",
+      "import { T${TM_DIRECTORY/.*\\\\/(.*)$/$1/g}} from './types';",
       "",
       "const name = '${TM_DIRECTORY/.*\\\\/(.*)$/$1/g}';",
       "",
-      "const initialState:${TM_DIRECTORY/.*\\\\/(.*)$/$1/g}Types.default = {};",
+      "const initialState:T${TM_DIRECTORY/.*\\\\/(.*)$/$1/g} = {};",
       "",
       "const reducers = {};",
       "",
       "const ${TM_DIRECTORY/.*\\\\/(.*)$/$1/g}Slice = createSlice({name, initialState, reducers});",
       "",
-      "export default ${TM_DIRECTORY/.*\\\\/(.*)$/$1/g}Slice.reducers;",
+      "export default ${TM_DIRECTORY/.*\\\\/(.*)$/$1/g}Slice.reducer;",
       "export const actions = ${TM_DIRECTORY/.*\\\\/(.*)$/$1/g}Slice.actions;"
     ],
     "description": ""
